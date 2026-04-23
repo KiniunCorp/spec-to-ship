@@ -13,7 +13,9 @@
   <a href="#why-s2s">Why s2s</a> · <a href="#how-it-works">How it works</a> · <a href="#install">Install</a> · <a href="#quick-start">Quick start</a> · <a href="#stages">Stages</a> · <a href="#command-reference">Commands</a> · <a href="#documentation">Docs</a>
 </p>
 
-[DEMO - Full s2s workflow](https://github.com/user-attachments/assets/d944be06-762d-44ec-ab32-fd8587753694)
+## DEMO - Full s2s workflow
+
+[demo-full.mp4](https://github.com/user-attachments/assets/d944be06-762d-44ec-ab32-fd8587753694)
 
 # Spec-To-Ship (`s2s`)
 
