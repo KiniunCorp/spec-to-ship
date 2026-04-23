@@ -1,0 +1,6 @@
+{
+  "mode": "api",
+  "provider": "anthropic",
+  "model": "claude-sonnet-4-5-20250929",
+  "apiKeyEnvVar": "ANTHROPIC_API_KEY"
+}
