@@ -1,0 +1,81 @@
+{
+  "name": "spec-to-ship",
+  "version": "0.2.56",
+  "description": "Unified agentic SDLC orchestrator with engineering execution runtime",
+  "keywords": ["ai", "cli", "llm", "sdlc", "agentic"],
+  "homepage": "https://github.com/KiniunCorp/spec-to-ship#readme",
+  "bugs": {
+    "url": "https://github.com/KiniunCorp/spec-to-ship/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KiniunCorp/spec-to-ship.git"
+  },
+  "author": "KiniunCorp",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "s2s": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README_es.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "check:change-scope": "tsx scripts/check-change-scope.ts",
+    "check:self-versioning": "tsx scripts/check-self-versioning.ts",
+    "check:multi-ui": "tsx scripts/check-multi-ui-contract.ts",
+    "check:git-delivery-policy": "tsx scripts/test-git-delivery-policy.ts",
+    "check:readiness-model": "tsx scripts/test-readiness-model.ts",
+    "check:lightweight-prerequisites": "tsx scripts/test-lightweight-prerequisites.ts",
+    "check:init-prerequisites": "tsx scripts/test-init-prerequisites.ts",
+    "check:output-renderers": "tsx scripts/test-output-renderers.ts",
+    "check:change-initialization": "tsx scripts/test-change-initialization.ts",
+    "check:spec-initialization": "tsx scripts/test-spec-initialization.ts",
+    "check:stage-ownership": "tsx scripts/test-stage-ownership.ts",
+    "check:source-artifact-linkage": "tsx scripts/test-source-artifact-linkage.ts",
+    "check:design-spec-linkage": "tsx scripts/test-design-spec-linkage.ts",
+    "check:design-output-preservation": "tsx scripts/test-design-output-preservation.ts",
+    "check:intent-classifier": "tsx scripts/test-intent-classifier.ts",
+    "check:approval-ready-transitions": "tsx scripts/test-approval-ready-transitions.ts",
+    "check:context-resolver": "tsx scripts/test-context-resolver.ts",
+    "check:research-contract": "tsx scripts/test-research-contract.ts",
+    "check:gate-lifecycle": "tsx scripts/test-gate-lifecycle.ts",
+    "check:slice-selection": "tsx scripts/test-slice-selection.ts",
+    "check:slice-derivation-contract": "tsx scripts/test-slice-derivation-contract.ts",
+    "check:run-lifecycle": "tsx scripts/test-run-lifecycle.ts",
+    "check:engineering-exec-run-lifecycle": "tsx scripts/test-engineering-exec-run-lifecycle.ts",
+    "check:worktrunk-provider": "tsx scripts/test-worktrunk-provider.ts",
+    "check:worktree-provider-native": "tsx scripts/test-worktree-provider-native.ts",
+    "check:orchestrated-stage-flow": "tsx scripts/test-orchestrated-stage-flow.ts",
+    "check:cli-contract": "bash scripts/test-cli-v1-contract.sh",
+    "check:isolation": "tsx scripts/check-internal-governance-isolation.ts",
+    "check": "npm run typecheck && npm run build && npm run check:self-versioning && npm run check:change-scope && npm run check:multi-ui && npm run check:git-delivery-policy && npm run check:readiness-model && npm run check:lightweight-prerequisites && npm run check:init-prerequisites && npm run check:output-renderers && npm run check:change-initialization && npm run check:spec-initialization && npm run check:stage-ownership && npm run check:source-artifact-linkage && npm run check:design-spec-linkage && npm run check:design-output-preservation && npm run check:intent-classifier && npm run check:approval-ready-transitions && npm run check:context-resolver && npm run check:research-contract && npm run check:gate-lifecycle && npm run check:slice-selection && npm run check:slice-derivation-contract && npm run check:run-lifecycle && npm run check:engineering-exec-run-lifecycle && npm run check:orchestrated-stage-flow && npm run check:worktrunk-provider && npm run check:worktree-provider-native && npm run check:cli-contract && npm run check:isolation",
+    "cli": "tsx src/cli.ts",
+    "init": "tsx scripts/init-interactive.ts",
+    "ensure:ready": "tsx scripts/ensure-ready.ts",
+    "workspace:bootstrap": "tsx scripts/bootstrap-workspace.ts",
+    "app:scaffold": "tsx scripts/scaffold-app.ts",
+    "selfhost:apply": "tsx scripts/selfhost-apply.ts",
+    "selfhost:clean": "tsx scripts/selfhost-clean.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "openai": "^4.79.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

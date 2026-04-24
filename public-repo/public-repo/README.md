@@ -7,21 +7,20 @@
   <a href="https://www.npmjs.com/package/spec-to-ship"><img src="https://img.shields.io/badge/npm-spec--to--ship-cb3837?style=flat-square&logo=npm" alt="npm" /></a>
   <a href="https://github.com/KiniunCorp/spec-to-ship/stargazers"><img src="https://img.shields.io/github/stars/KiniunCorp/spec-to-ship?style=flat-square" alt="GitHub stars" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT" /></a>
+  <a href="https://github.com/sponsors/KiniunCorp"><img src="https://img.shields.io/badge/Sponsor-♥-ea4aaa?style=flat-square&logo=github-sponsors" alt="Sponsor" /></a>
 </p>
 
 <p align="center">
   <a href="#why-s2s">Why s2s</a> · <a href="#how-it-works">How it works</a> · <a href="#install">Install</a> · <a href="#quick-start">Quick start</a> · <a href="#stages">Stages</a> · <a href="#command-reference">Commands</a> · <a href="#documentation">Docs</a>
 </p>
 
-## DEMO - Full s2s workflow
-
-[demo-full.mp4](https://github.com/user-attachments/assets/d944be06-762d-44ec-ab32-fd8587753694)
-
 # Spec-To-Ship (`s2s`)
 
 `s2s` gives your AI chat sessions a structured engineering workflow. Every request is classified, routed through the right stages, tracked end-to-end, and gated for your approval — while your AI chat client does the actual work.
 
 Works with **Claude Code, Codex, OpenCode**, and any AI chat tool that reads file-based governance. No lock-in.
+
+[demo-full.mp4](https://github.com/user-attachments/assets/d944be06-762d-44ec-ab32-fd8587753694)
 
 ## Why s2s
 
@@ -215,6 +214,10 @@ Every change goes on its own branch and merges to `main` via PR. See [Versioning
 ## Contributing
 
 Contributions are welcome. Please open an issue before submitting a PR for non-trivial changes. Run `npm run check` before submitting — all checks must pass. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full workflow.
+
+## Support
+
+If `s2s` is useful to you or your team, consider [sponsoring the project](https://github.com/sponsors/KiniunCorp). Sponsorship helps sustain maintenance, documentation, and continued development. See [SUPPORT.md](./SUPPORT.md) for details.
 
 ## License
 
