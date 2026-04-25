@@ -30,27 +30,27 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Workflow',
+					label: 'How It Works',
 					items: [
 						{ label: 'Chat-Native Workflow', slug: 'chat-native-workflow' },
-						{ label: 'Execution Templates', slug: 'execution-templates' },
-						{ label: 'LLM Access Modes', slug: 'llm-access-modes' },
+						{ label: 'Technical Architecture', slug: 'technical-architecture' },
+						{ label: 'Token Efficiency', slug: 'token-efficiency' },
 					],
 				},
 				{
-					label: 'Architecture',
+					label: 'Reference',
 					items: [
-						{ label: 'Technical Architecture', slug: 'technical-architecture' },
-						{ label: 'Architecture Summary', slug: 'tech-architecture-summary' },
-						{ label: 'Operations & Security', slug: 'technical-operations-security' },
+						{ label: 'Execution Templates', slug: 'execution-templates' },
+						{ label: 'LLM Access Modes', slug: 'llm-access-modes' },
 						{ label: 'Live State Reference', slug: 'live-state' },
+						{ label: 'Operations & Security', slug: 'technical-operations-security' },
+						{ label: 'Architecture Summary', slug: 'tech-architecture-summary' },
 					],
 				},
 				{
 					label: 'Operations',
 					items: [
 						{ label: 'Cost Observability', slug: 'cost-observability' },
-						{ label: 'Token Efficiency', slug: 'token-efficiency' },
 						{ label: 'Backup & Restore', slug: 'backup-and-restore' },
 						{ label: 'Figma MCP Setup', slug: 'figma-mcp-setup' },
 					],
@@ -60,6 +60,14 @@ export default defineConfig({
 					items: [
 						{ label: 'Homebrew Distribution', slug: 'homebrew-distribution' },
 						{ label: 'Versioning & Migrations', slug: 'versioning-and-migrations' },
+					],
+				},
+				{
+					label: 'Project',
+					items: [
+						{ label: 'Roadmap', slug: 'roadmap' },
+						{ label: 'Changelog', slug: 'changelog' },
+						{ label: 'Contributing', slug: 'contributing' },
 					],
 				},
 			],

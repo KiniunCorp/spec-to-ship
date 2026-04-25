@@ -1,0 +1,147 @@
+---
+---
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo">SPEC-TO-SHIP</span>
+        <p>The structured engineering workflow for AI-assisted development. Deterministic, stage-gated, and safe.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Docs</h4>
+        <ul>
+          <li><a href="/en/introduction/">Introduction</a></li>
+          <li><a href="/en/quickstart/">Quick Start</a></li>
+          <li><a href="/en/chat-native-workflow/">Workflow</a></li>
+          <li><a href="/en/technical-architecture/">Architecture</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a></li>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/ROADMAP.md" target="_blank" rel="noopener">Roadmap</a></li>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship/issues" target="_blank" rel="noopener">Issues</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/LICENSE" target="_blank" rel="noopener">License</a></li>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/SECURITY.md" target="_blank" rel="noopener">Security</a></li>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a></li>
+          <li><a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/GOVERNANCE.md" target="_blank" rel="noopener">Governance</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 KiniunCorp. MIT License.</span>
+      <span class="footer-status">
+        <span class="status-dot"></span>
+        All Systems Operational
+      </span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #091018;
+    border-top: 1px solid #1e2d3d;
+    margin-top: 0;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 2rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  .footer-logo {
+    display: block;
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: #3dba82;
+    margin-bottom: 1rem;
+  }
+  .footer-brand p {
+    color: #4a5568;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-width: 28ch;
+  }
+
+  .footer-col h4 {
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8f9aaa;
+    margin-bottom: 1.25rem;
+  }
+  .footer-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-col a {
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #4a5568;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.15s;
+  }
+  .footer-col a:hover { color: #3dba82; }
+
+  .footer-bottom {
+    border-top: 1px solid #1e2d3d;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy {
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #4a5568;
+  }
+  .footer-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a5568;
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #3dba82;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>

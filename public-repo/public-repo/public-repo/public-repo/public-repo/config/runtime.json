@@ -1,0 +1,44 @@
+{
+  "productName": "spec-to-ship",
+  "defaultBranch": "main",
+  "guardrailPolicy": "strict",
+  "workspace": {
+    "basePath": ".",
+    "orchestratorDirName": ".",
+    "projectDirName": "my-app",
+    "worktreesDirName": "my-app-worktrees"
+  },
+  "github": {
+    "remoteName": "origin",
+    "autoPush": true,
+    "autoPR": true,
+    "autoMerge": false
+  },
+  "execution": {
+    "mode": "shell",
+    "templateId": "codex_strict",
+    "commandTemplate": "",
+    "maxTasksPerRun": 3,
+    "stopOnFailure": true,
+    "timeoutMs": 1200000,
+    "allowedCommands": ["codex", "claude", "opencode", "just", "pnpm", "node", "git"],
+    "allowUnsafeRawCommand": false
+  },
+  "costControl": {
+    "enabled": false,
+    "budgetUsd": 0,
+    "warnThresholdPct": 80,
+    "hardStopThresholdPct": 100
+  },
+  "chatObservability": {
+    "sessionBannerEnabled": true,
+    "wrapperPrefixEnabled": false,
+    "wrapperPrefixTemplate": "▶ S2S ACTIVE · project=${PROJECT_ALIAS} · client=${CLIENT} · stage=${STAGE}"
+  },
+  "versioning": {
+    "enforceSemverBumpOnDelivery": true,
+    "requireChangelogUpdate": true,
+    "manifestFile": "package.json",
+    "changelogFile": "CHANGELOG.md"
+  }
+}
