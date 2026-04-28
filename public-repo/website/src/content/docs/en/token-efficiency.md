@@ -3,26 +3,28 @@ title: "Token Efficiency"
 description: "s2s eliminates AI token overhead from workflow reasoning, state reconstruction, and orientation, keeping the AI focused on artifact generation."
 ---
 
-## The overhead problem
+## Where tokens go in an unguided session
 
-When an AI coding session runs without external orchestration, the AI spends tokens on things that aren't artifact generation:
+Every AI coding session has a budget. The question is how much of that budget goes to the work you actually wanted — writing a PRD, producing a TechSpec, generating code — versus how much goes to the overhead of figuring out where you are and what to do next.
 
-- "What stage am I in?" — re-reading prior conversation to reconstruct state
-- "What has been decided so far?" — re-summarizing prior specs and decisions
-- "What command should I run next?" — reasoning about workflow position
-- "Did that artifact get recorded?" — uncertainty about whether prior work persists
+In an unguided session, the overhead is substantial. Without external state, the AI reconstructs context from the conversation history on every turn:
 
-In a typical unguided session for a feature that goes through PM → Engineering, a large fraction of the AI's token budget goes to orientation and workflow reasoning rather than to the PRD or TechSpec itself.
+- What stage are we in? Re-read prior messages.
+- What was decided in the PM phase? Re-summarize prior artifacts.
+- Should I ask a follow-up or proceed? Reason about workflow position.
+- Is that artifact saved somewhere, or do I need to regenerate it? Uncertainty about prior work.
 
-## What s2s handles in the binary (zero tokens)
+For a medium-complexity feature going through PM and Engineering, this overhead typically runs 1,500–3,000 tokens across two stages — before any actual artifact is written. In long-running projects with many prior decisions, it is worse. The AI is spending a significant fraction of its context window re-reading history it should not have to touch.
 
-Every operation that s2s performs in the CLI binary costs zero AI tokens:
+## How s2s eliminates orchestration overhead
+
+Every workflow decision that s2s makes runs in the CLI binary at zero LLM token cost:
 
 | Operation | Token cost |
 |-----------|-----------|
 | Intent classification | 0 |
 | Stage route planning | 0 |
-| Stage context package construction | 0 |
+| Context package construction | 0 |
 | `.s2s/live.md` state update | 0 |
 | Artifact quality assessment | 0 |
 | Ledger advancement | 0 |
@@ -30,39 +32,65 @@ Every operation that s2s performs in the CLI binary costs zero AI tokens:
 | Worktree setup and isolation | 0 |
 | Git delivery (branch, push, PR) | 0 |
 
-## What the AI handles (focused tokens)
+None of this calls an LLM. The orchestrator runs locally, reads from structured files, and writes back to structured files. Your AI chat budget is untouched by every one of these operations.
 
-Each stage gives the AI a context package with exactly what it needs. The AI's job in each stage is narrow and well-defined:
+## What the AI gets instead
 
-| Stage | AI's task | Token efficiency |
-|-------|-----------|-----------------|
-| `pm` | Write PRD.md from the context package | High: no state reconstruction needed |
-| `research` | Write Research.md with focused investigation | High: prior decisions are in the package |
-| `design` | Write PrototypeSpec.md | High: PRD and research are summarized |
-| `engineering` | Write TechSpec.md + Backlog.md | High: full prior context delivered |
+Rather than reconstructing context from conversation history, the AI receives a context package assembled by the conductor for this specific stage and this specific request. The package contains:
 
-The AI doesn't need to remember where it is in the workflow. It reads the context package, generates the artifact, and submits. `live.md` holds the state between stages.
+- The original user request and its classified intent
+- Where this stage sits in the route
+- Prior stage artifacts, summarized and structured — not the raw conversation
+- The exact content requirements for this stage's artifact
+- The exact file path to write to
+- The exact command to run when done
 
-## Approximate comparison
+The AI reads the package, generates the artifact, and submits. It does not need to remember anything from prior turns because the package contains exactly what is relevant.
+
+## The numbers
 
 For a medium-complexity feature going through `pm → engineering`:
 
-**Without s2s (unguided session):**
-- Tokens to orient at session start: ~500–1000
-- Tokens per stage to reconstruct prior decisions: ~300–800
-- Tokens on workflow reasoning: ~200–500 per stage
-- Total overhead: ~1500–3000 tokens for two stages
+**Without s2s:**
 
-**With s2s (chat-native):**
-- Orientation: read `live.md` (~150 tokens)
-- Per stage: receive focused context package, generate artifact
-- Total overhead: ~200 tokens across both stages
+| Activity | Token estimate |
+|----------|---------------|
+| Session orientation (re-reading history) | 500–1,000 |
+| Reconstructing prior decisions per stage | 300–800 |
+| Workflow reasoning per stage | 200–500 |
+| Total overhead across two stages | 1,500–3,000 |
 
-The difference scales with project complexity. Long-running projects with many prior decisions benefit most — the AI never needs to re-read the full conversation history because `live.md` and the context package contain exactly what's needed.
+**With s2s:**
 
-## Configuring quality threshold
+| Activity | Token estimate |
+|----------|---------------|
+| Reading `live.md` at session start | ~150 |
+| Receiving context package per stage | ~200–400 (focused, no redundancy) |
+| Total overhead across two stages | ~200–500 |
 
-Quality checks run on `--submit`. The threshold controls when auto-approve fires vs. when a review gate is created:
+That is roughly a 6–10x reduction in token overhead for a two-stage feature. The AI's entire remaining budget goes to the PRD and the TechSpec — the things you actually needed.
+
+The benefit scales with project complexity. On a long-running project with ten prior stages of decisions, the AI would need to reconstruct an enormous amount of history without s2s. With s2s, the context package contains exactly the prior decisions relevant to this stage. The conversation history is irrelevant.
+
+## Why focused context beats full history
+
+There is a temptation to think that giving the AI more context is always better. In practice, it is not. Longer context windows mean more tokens spent on retrieval and reasoning, more noise mixed with signal, and higher cost per request.
+
+s2s takes the opposite approach: give the AI exactly what it needs for this stage, nothing more. The context package for the Engineering stage contains the PRD summary and the research findings — not the full conversation thread that produced them. The AI gets signal without noise.
+
+This is also why `.s2s/live.md` is the orientation primitive rather than `s2s status`. Reading `live.md` costs around 150 tokens. Running `s2s status` and reading its output costs around 400 tokens. Over many sessions and many stages, that difference compounds.
+
+## What this means for cost
+
+If you are using a paid AI API in standalone mode, the efficiency gains translate directly to lower cost per feature. The orchestration overhead that s2s eliminates is pure waste — tokens that went to workflow reasoning rather than to the artifact your project needed.
+
+For teams running AI-assisted development at scale, eliminating 1,500–3,000 tokens of overhead per feature, across dozens of features per month, is a meaningful reduction in API spend.
+
+In chat-native mode (the default), you are working within your AI client's existing subscription or session — the token savings mean you hit context limits later and session quality stays higher for longer.
+
+## Configuring quality checks
+
+Quality checks run on `--submit`. They are the only place where s2s evaluates artifact content — and even this runs locally, not through an LLM call. The quality score determines whether the artifact advances automatically or requires a review gate.
 
 ```json
 {
@@ -74,17 +102,8 @@ Quality checks run on `--submit`. The threshold controls when auto-approve fires
 }
 ```
 
-- `minAutoApproveScore`: 0.0–1.0. Default 0.85. Scores below this trigger a quality failure message; the AI must fix and re-submit.
-- `blockOnFailure`: if true, quality failure exits with a non-zero code (useful in CI). Default false.
+`minAutoApproveScore` is a 0.0–1.0 threshold. Artifacts that score above it advance to the next stage automatically. Artifacts below it return a failure message listing what is missing, and the AI fixes and resubmits. The default is 0.85.
 
-Update with `s2s config edit`.
+`blockOnFailure` controls whether a quality failure exits with a non-zero code. Useful in CI pipelines where you want quality failures to be hard failures. Defaults to false.
 
-## Verbose mode
-
-By default, s2s prints `[s2s]` prefix lines before and after stage output. To suppress them:
-
-```json
-{ "verbose": false }
-```
-
-in `runtime.json`, or run `s2s stage <stage> --no-verbose`. Prefix lines are informational and do not affect the context package content.
+Update these settings with `s2s config edit`.

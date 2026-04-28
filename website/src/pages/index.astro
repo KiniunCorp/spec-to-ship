@@ -529,6 +529,36 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     </div>
   </section>
 
+<script>
+  (function () {
+    function initPipeline() {
+      // Stage nodes: tap to expand, tap again (or tap another) to collapse
+      var nodes = Array.from(document.querySelectorAll('.stage-node'));
+      nodes.forEach(function (node) {
+        node.addEventListener('click', function () {
+          var isActive = node.classList.contains('touch-active');
+          nodes.forEach(function (n) { n.classList.remove('touch-active'); });
+          if (!isActive) node.classList.add('touch-active');
+        });
+      });
+
+      // Orchestrator hub: tap to toggle expanded card
+      var hub = document.querySelector('.orch-hub');
+      if (hub) {
+        hub.addEventListener('click', function () {
+          hub.classList.toggle('touch-active');
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPipeline);
+    } else {
+      initPipeline();
+    }
+  })();
+</script>
+
 </StarlightPage>
 
 <style is:global>
@@ -621,7 +651,11 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     gap: 3rem;
     align-items: center;
   }
-  @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-grid > * { min-width: 0; }
+    .terminal { max-width: 100%; }
+  }
 
   .badge {
     display: inline-flex;
@@ -709,8 +743,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   .dot.green  { background: #27c93f; }
   .terminal-label { margin-left: auto; color: #4a5568; font-size: 0.72rem; }
 
-  .terminal-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0; }
-  .t-line { line-height: 1.35; color: #c8d0d8; margin: 0; }
+  .terminal-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0; overflow-x: auto; }
+  .t-line { line-height: 1.35; color: #c8d0d8; margin: 0; white-space: pre; }
   .t-dim    { color: #4a5568; }
   .t-accent { color: #3dba82; }
   .t-success { color: #3dba82; font-weight: 600; }
@@ -819,7 +853,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     justify-content: center;
     transition: opacity 0.25s ease;
   }
-  .orch-hub:hover .orch-default { opacity: 0; pointer-events: none; }
+  .orch-hub:hover .orch-default,
+  .orch-hub.touch-active .orch-default { opacity: 0; pointer-events: none; }
 
   .orch-hex-outer {
     width: 200px;
@@ -881,7 +916,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     transition: opacity 0.25s ease 0.1s;
     pointer-events: none;
   }
-  .orch-hub:hover .orch-card { opacity: 1; pointer-events: auto; }
+  .orch-hub:hover .orch-card,
+  .orch-hub.touch-active .orch-card { opacity: 1; pointer-events: auto; }
 
   .orch-card-title {
     font-family: monospace;
@@ -932,7 +968,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
       border-color 0.2s;
     cursor: default;
   }
-  .stage-node:hover {
+  .stage-node:hover, .stage-node.touch-active {
     width: 210px;
     height: 220px;
     border-radius: 10px;
@@ -940,7 +976,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     z-index: 10;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
-  .node-w:hover, .node-e:hover { height: 240px; }
+  .node-w:hover, .node-e:hover,
+  .node-w.touch-active, .node-e.touch-active { height: 240px; }
 
   .node-n { top: 0;    left: 50%; transform: translateX(-50%); }
   .node-e { right: 0;  top: 50%;  transform: translateY(-50%); }
@@ -958,7 +995,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     gap: 0.35rem;
     transition: min-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s;
   }
-  .stage-node:hover .node-face {
+  .stage-node:hover .node-face,
+  .stage-node.touch-active .node-face {
     min-height: 0;
     padding-top: 1.25rem;
     padding-bottom: 0.5rem;
@@ -987,7 +1025,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     margin: 0;
     transition: opacity 0.2s, transform 0.3s;
   }
-  .stage-node:hover .node-arrow {
+  .stage-node:hover .node-arrow,
+  .stage-node.touch-active .node-arrow {
     opacity: 0;
     transform: rotate(90deg) translateX(10px);
   }
@@ -999,7 +1038,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     opacity: 0;
     transition: opacity 0.2s ease 0.2s;
   }
-  .stage-node:hover .node-desc { opacity: 1; }
+  .stage-node:hover .node-desc,
+  .stage-node.touch-active .node-desc { opacity: 1; }
   .node-desc p {
     color: #8f9aaa;
     font-size: 0.75rem;
@@ -1038,26 +1078,80 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     text-align: center;
   }
 
-  /* Mobile fallback */
+  /* Radial → vertical stack on mobile */
   @media (max-width: 700px) {
     .radial-wrap {
       height: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
       max-width: 100%;
     }
     .radial-line { display: none; }
-    .orch-hub { position: static; transform: none; grid-column: 1 / -1; }
-    .orch-hex-outer { margin: 0 auto; }
+
+    /* Orchestrator: always show expanded card, hide hex */
+    .orch-hub {
+      position: static;
+      transform: none;
+      width: 100%;
+      height: auto;
+    }
+    .orch-default { display: none !important; }
+    .orch-card {
+      position: static !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      border-radius: 8px;
+      padding: 1.5rem 1.25rem;
+    }
+
+    /* Stage nodes as tappable cards — collapsed by default */
     .stage-node {
       position: static;
       transform: none;
-      width: 100%; height: auto;
+      width: 100% !important;
+      height: auto !important;
       border-radius: 8px;
+      border-color: rgba(61,186,130,0.2);
+      cursor: pointer;
+      overflow: hidden;
     }
-    .stage-node:hover { width: 100%; }
-    .node-desc { opacity: 1; }
+    .node-face {
+      min-height: 0 !important;
+      padding: 1rem 1.25rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .stage-node h3 { text-align: left; width: auto; }
+    /* Replace big arrow with a small chevron indicator */
+    .node-arrow { display: none; }
+    .node-face::after {
+      content: '▶';
+      color: rgba(61,186,130,0.5);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+      transition: transform 0.25s ease, color 0.2s;
+    }
+    .stage-node.touch-active .node-face::after {
+      transform: rotate(90deg);
+      color: #3dba82;
+    }
+    /* Collapsed: description hidden */
+    .node-desc {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.25rem;
+      transition: opacity 0.2s ease, max-height 0.3s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+    }
+    .stage-node.touch-active .node-desc {
+      opacity: 1;
+      max-height: 200px;
+      padding: 0 1.25rem 1rem;
+    }
+    .node-desc p { text-align: left; }
   }
 
   /* ─── Features ──────────────────────────────── */
@@ -1200,6 +1294,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     padding: 1rem 1.25rem;
     display: flex;
     flex-direction: column;
+    overflow-x: auto;
   }
   .cli-line {
     line-height: 1.5;
@@ -1290,7 +1385,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     border-bottom: 1px solid #1e2d3d;
   }
   .gate-term-title { margin-left: 0.5rem; color: #4a5568; font-size: 0.68rem; }
-  .gate-term-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; }
+  .gate-term-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; overflow-x: auto; }
   .g-line { line-height: 1.5; color: #c8d0d8; margin: 0; white-space: pre; }
   .g-spacer { height: 0.4rem; }
   .g-prompt { color: #3dba82; margin-right: 0.5rem; font-weight: 700; }
@@ -1395,9 +1490,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     letter-spacing: 0.03em;
   }
   .compat-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.75rem;
     width: 100%;
   }
@@ -1816,5 +1910,83 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     gap: 2rem;
     flex-wrap: wrap;
     position: relative;
+  }
+
+  /* ═══════════════════════════════════════
+     MOBILE RESPONSIVE (≤640px)
+     ═══════════════════════════════════════ */
+
+  /* Hero */
+  @media (max-width: 640px) {
+    .hero { padding: 0 0 3rem; }
+    .hero-left h1 { font-size: 2rem; }
+    .terminal { font-size: 0.72rem; }
+    .terminal-body { padding: 0.9rem 1rem; }
+  }
+
+  /* Feature sections */
+  @media (max-width: 640px) {
+    .feature { padding: 4rem 0; }
+    .feature-grid { gap: 2rem; }
+    /* Chat panels — smaller font, allow body scroll */
+    .chat-panel { font-size: 0.68rem; }
+    .chat-body { padding: 0.75rem 1rem; }
+    .cli-line { white-space: pre-wrap; word-break: break-all; }
+    /* Gate terminal */
+    .gate-terminal { font-size: 0.68rem; }
+    .gate-term-body { padding: 0.9rem 1rem; }
+    .g-line { white-space: pre-wrap; word-break: break-all; }
+  }
+
+  /* Compat logos — 3 columns on mobile */
+  @media (max-width: 600px) {
+    .compat-logos { grid-template-columns: repeat(3, 1fr); }
+    .compat-item { padding: 0.9rem 0.5rem; min-width: 0; }
+    .compat-inner { padding: 2rem 1rem 1.5rem; }
+  }
+
+  /* Token efficiency section */
+  @media (max-width: 640px) {
+    .token-section { padding: 4rem 0; }
+    .oh-key { font-size: 0.62rem; }
+    .zero-ops-chips { gap: 0.4rem; }
+    .zero-chip { font-size: 0.6rem; padding: 0.25rem 0.7rem; }
+  }
+
+  /* Comparison table — reduce padding, keep horizontal scroll */
+  @media (max-width: 640px) {
+    .comparison { padding: 4rem 0; }
+    .table-wrap { -webkit-overflow-scrolling: touch; }
+    th { padding: 0.65rem 0.75rem; font-size: 0.58rem; letter-spacing: 0.08em; }
+    td { padding: 0.65rem 0.75rem; font-size: 0.78rem; }
+    td:first-child { font-size: 0.75rem; }
+  }
+
+  /* Open source */
+  @media (max-width: 640px) {
+    .opensource { padding: 4rem 0; }
+    .opensource-grid { gap: 2.5rem; }
+    .stats-grid { gap: 1px; }
+    .stat-card { padding: 1.5rem 1.25rem; }
+    .stat-val { font-size: 2rem; }
+  }
+
+  /* CTA */
+  @media (max-width: 640px) {
+    .cta-section { padding: 4rem 0; }
+    .cta-box { padding: 2.5rem 1.25rem; }
+    .install-steps { width: 100%; }
+    .install-block { width: 100%; box-sizing: border-box; }
+    .install-block code { font-size: 0.72rem; white-space: pre-wrap; word-break: break-all; }
+    .cta-pills { gap: 0.75rem; }
+    .pill { font-size: 0.6rem; }
+  }
+
+  /* Global section padding reduction on mobile */
+  @media (max-width: 640px) {
+    .vibe-break { padding: 3rem 0; }
+    .pipeline { padding: 4rem 0; }
+    .section-header { margin-bottom: 2rem; }
+    .section-header p { font-size: 0.95rem; }
   }
 </style>

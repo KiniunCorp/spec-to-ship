@@ -1,0 +1,871 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+---
+
+<StarlightPage frontmatter={{ title: 'Spec-to-Ship', template: 'splash', head: [] }}>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-left">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            NOW STABLE V0.2.x
+          </div>
+
+          <h1>
+            Engineer AI agents<br />with <em>structure.</em>
+          </h1>
+
+          <p class="hero-sub">
+            Spec-to-Ship (s2s) is the structured engineering workflow for AI-assisted development.
+            Move from vague prompts to verifiable, stage-gated delivery.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/en/quickstart/" class="btn-primary">GET STARTED</a>
+            <a href="/en/introduction/" class="btn-secondary">READ THE SPEC</a>
+          </div>
+
+          <div class="hero-pills">
+            <span class="pill">⚡ Chat-Native</span>
+            <span class="pill">⬡ Isolated Runtime</span>
+            <span class="pill">✓ Stage-Gated</span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="terminal-label">zsh — 80x24</span>
+            </div>
+            <div class="terminal-body">
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">s2s init</span></div>
+              <div class="t-line t-dim">Initializing spec-to-ship environment...</div>
+              <div class="t-line"><span class="t-prompt">?</span> <span class="t-hl">Select project type: TypeScript / Next.js</span></div>
+              <div class="t-line t-dim">✓ Detected existing schema.json</div>
+              <div class="t-line t-dim">✓ Configuring agent workspace in .s2s/</div>
+              <div class="t-spacer"></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">s2s pm "add auth flow"</span></div>
+              <div class="t-line t-accent">▶ Executing: Planning Agent</div>
+              <div class="t-line t-dim">[1/3] Parsing specification...</div>
+              <div class="t-line t-dim">[2/3] Mapping architecture to patterns...</div>
+              <div class="t-line t-dim">[3/3] Emitting implementation plan...</div>
+              <div class="t-spacer"></div>
+              <div class="t-line t-success">SUCCESS: Ready for engineering stage</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="pipeline">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Pipeline</h2>
+        <p>s2s enforces a strict state machine for AI development, ensuring every code change has clear lineage back to requirements.</p>
+      </div>
+      <div class="pipeline-grid">
+        <div class="pipeline-card">
+          <span class="step-num">01</span>
+          <h3>Spec</h3>
+          <p>Define your requirements in structured Markdown. Intent is classified across nine work types.</p>
+        </div>
+        <div class="pipeline-card">
+          <span class="step-num">02</span>
+          <h3>Plan</h3>
+          <p>The agent maps requirements to your project's architecture and decides the minimum route needed.</p>
+        </div>
+        <div class="pipeline-card">
+          <span class="step-num">03</span>
+          <h3>Code</h3>
+          <p>Deterministic generation in an isolated git worktree. Your main branch stays untouched.</p>
+        </div>
+        <div class="pipeline-card">
+          <span class="step-num">04</span>
+          <h3>Ship</h3>
+          <p>Human-approved, verified modules ready for PR and production deployment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 1 -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature-text">
+          <div class="feature-icon-wrap">⚙</div>
+          <h3>Designed for machine consumption</h3>
+          <p>LLMs struggle with large, ambiguous codebases. s2s provides a machine-readable bridge — breaking projects into focused task packages that agents understand precisely, without hallucinating scope or dependencies.</p>
+          <ul class="feature-list">
+            <li>Intent-classified routing across nine work types</li>
+            <li>Structured task packages with bounded context</li>
+            <li>Token-efficient, noise-free artifact generation</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></span>
+              <span class="code-label">TASK PACKAGE</span>
+            </div>
+            <pre class="code-body"><span class="c-key">"stage"</span><span class="c-punct">:</span> <span class="c-str">"engineering"</span><span class="c-punct">,</span>
+<span class="c-key">"intent"</span><span class="c-punct">:</span> <span class="c-str">"new_feature"</span><span class="c-punct">,</span>
+<span class="c-key">"slice"</span><span class="c-punct">:</span> <span class="c-str">"auth-flow-jwt"</span><span class="c-punct">,</span>
+<span class="c-key">"context"</span><span class="c-punct">: {</span>
+  <span class="c-key">"spec"</span><span class="c-punct">:</span> <span class="c-str">"specs/auth.md"</span><span class="c-punct">,</span>
+  <span class="c-key">"prior_artifacts"</span><span class="c-punct">: [</span>
+    <span class="c-str">"pm/plan.md"</span><span class="c-punct">,</span>
+    <span class="c-str">"design/spec.md"</span>
+  <span class="c-punct">]</span>
+<span class="c-punct">},</span>
+<span class="c-key">"output_path"</span><span class="c-punct">:</span>
+  <span class="c-str">".s2s/artifacts/eng.md"</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 2 -->
+  <section class="feature feature-alt">
+    <div class="container">
+      <div class="feature-grid reverse">
+        <div class="feature-visual">
+          <div class="sandbox-monitor">
+            <div class="sandbox-header">
+              <span class="sandbox-badge">SANDBOX MONITOR</span>
+              <span class="sandbox-live"><span class="live-dot"></span> LIVE</span>
+            </div>
+            <div class="sandbox-row">
+              <span class="sandbox-label">WORKTREE</span>
+              <span class="sandbox-val ok">ISOLATED</span>
+            </div>
+            <div class="sandbox-row">
+              <span class="sandbox-label">MAIN BRANCH</span>
+              <span class="sandbox-val ok">UNTOUCHED</span>
+            </div>
+            <div class="sandbox-row">
+              <span class="sandbox-label">NET ACCESS</span>
+              <span class="sandbox-val deny">DENY (default)</span>
+            </div>
+            <div class="sandbox-row">
+              <span class="sandbox-label">FILE SCOPE</span>
+              <span class="sandbox-val ok">SCOPED TO SLICE</span>
+            </div>
+            <div class="sandbox-row">
+              <span class="sandbox-label">HUMAN GATE</span>
+              <span class="sandbox-val ok">REQUIRED</span>
+            </div>
+          </div>
+        </div>
+        <div class="feature-text">
+          <div class="feature-icon-wrap">⬡</div>
+          <h3>Execution without fear</h3>
+          <p>Never run agent code directly in your working directory. s2s executes all code changes in an isolated git worktree on a dedicated branch. Your main branch is clean until you explicitly review and approve.</p>
+          <div class="feature-two-col">
+            <div>
+              <strong>Scoped execution</strong>
+              <p>Each run targets one Slice — a bounded unit derived from your spec — limiting blast radius.</p>
+            </div>
+            <div>
+              <strong>Approval gates</strong>
+              <p>Nothing advances without a deliberate human decision via <code>s2s approve</code>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPATIBILITY -->
+  <section class="compat">
+    <div class="container">
+      <div class="compat-label">Works with your stack</div>
+      <div class="compat-logos">
+        <span class="compat-item">Claude Code</span>
+        <span class="compat-item">OpenAI Codex</span>
+        <span class="compat-item">TypeScript</span>
+        <span class="compat-item">Node.js</span>
+        <span class="compat-item">Homebrew</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="comparison">
+    <div class="container">
+      <div class="section-header">
+        <h2>Engineered for Reliability</h2>
+        <p>Compare the ungoverned AI coding experience with the structured s2s methodology.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Challenge</th>
+              <th>Without s2s</th>
+              <th class="th-accent">With s2s</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Scope control</td>
+              <td class="td-bad">AI decides what to build</td>
+              <td class="td-good">Intent-classified, stage-gated routing</td>
+            </tr>
+            <tr>
+              <td>Execution safety</td>
+              <td class="td-bad">Code runs in your workspace</td>
+              <td class="td-good">Isolated git worktrees per slice</td>
+            </tr>
+            <tr>
+              <td>State & audit</td>
+              <td class="td-bad">Lost when chat window closes</td>
+              <td class="td-good">Persistent artifacts in .s2s/</td>
+            </tr>
+            <tr>
+              <td>Review process</td>
+              <td class="td-bad">Ad-hoc, no approval trail</td>
+              <td class="td-good">Structured gates via s2s approve</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN SOURCE -->
+  <section class="opensource">
+    <div class="container">
+      <div class="opensource-grid">
+        <div class="opensource-text">
+          <h2>Open Source by Design</h2>
+          <p>s2s is built for the community. We believe the future of AI-assisted engineering depends on open, auditable standards for agent governance.</p>
+          <div class="opensource-actions">
+            <a href="https://github.com/KiniunCorp/spec-to-ship" class="btn-primary" target="_blank" rel="noopener">STAR ON GITHUB</a>
+            <a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/ROADMAP.md" class="btn-secondary" target="_blank" rel="noopener">VIEW ROADMAP</a>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-val">v0.2.x</span>
+            <span class="stat-label">CURRENT STABLE</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-val">MIT</span>
+            <span class="stat-label">LICENSE</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-val">2</span>
+            <span class="stat-label">AI CLIENTS</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-val">9</span>
+            <span class="stat-label">INTENT TYPES</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to ship with structure?</h2>
+        <p>Start using s2s in your project today — it installs in seconds and works with your existing Claude Code or Codex setup.</p>
+        <div class="install-block">
+          <code>npm install -g spec-to-ship</code>
+        </div>
+        <div class="cta-pills">
+          <span class="pill">✓ Open Source</span>
+          <span class="pill">✓ No Lock-in</span>
+          <span class="pill">✓ Claude Code + Codex</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</StarlightPage>
+
+<style is:global>
+  /* Make splash content full-width */
+  .sl-markdown-content { max-width: 100% !important; }
+  [data-has-hero] .hero-wrapper { padding: 0 !important; }
+</style>
+
+<style>
+  /* ─── Base ─────────────────────────────────── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-header h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .section-header p {
+    color: #8f9aaa;
+    font-size: 1.1rem;
+    max-width: 52ch;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ─── Buttons ───────────────────────────────── */
+  .btn-primary {
+    display: inline-block;
+    background: #3dba82;
+    color: #091018;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    padding: 0.8rem 1.75rem;
+    border: 2px solid #3dba82;
+    text-decoration: none;
+    font-family: monospace;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-primary:hover { background: #2ea36e; border-color: #2ea36e; color: #091018; }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: #c8d0d8;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    padding: 0.8rem 1.75rem;
+    border: 2px solid #4a5568;
+    text-decoration: none;
+    font-family: monospace;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-secondary:hover { border-color: #3dba82; color: #3dba82; }
+
+  /* ─── Hero ──────────────────────────────────── */
+  .hero {
+    padding: 5rem 0 6rem;
+    border-bottom: 1px solid #1e2d3d;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #0d2a1e;
+    color: #3dba82;
+    border: 1px solid #3dba82;
+    border-radius: 999px;
+    padding: 0.25rem 0.85rem;
+    font-size: 0.68rem;
+    font-family: monospace;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #3dba82;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-left h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-left h1 em {
+    color: #3dba82;
+    font-style: italic;
+  }
+
+  .hero-sub {
+    color: #8f9aaa;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 44ch;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+  .hero-pills { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .pill {
+    font-size: 0.68rem;
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #8f9aaa;
+    text-transform: uppercase;
+  }
+
+  /* Terminal */
+  .terminal {
+    background: #0d1a28;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1e2d3d;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  }
+  .terminal-bar {
+    background: #162030;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.red    { background: #ff5f56; }
+  .dot.yellow { background: #ffbd2e; }
+  .dot.green  { background: #27c93f; }
+  .terminal-label { margin-left: auto; color: #4a5568; font-size: 0.72rem; }
+
+  .terminal-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.2rem; }
+  .t-line { line-height: 1.6; color: #c8d0d8; }
+  .t-dim    { color: #4a5568; }
+  .t-accent { color: #3dba82; }
+  .t-success { color: #3dba82; font-weight: 600; }
+  .t-hl     { color: #3dba82; }
+  .t-prompt { color: #3dba82; margin-right: 0.5rem; }
+  .t-cmd    { color: #c8d0d8; }
+  .t-spacer { height: 0.5rem; }
+
+  /* ─── Pipeline ──────────────────────────────── */
+  .pipeline {
+    background: rgba(13, 26, 40, 0.4);
+    padding: 6rem 0;
+    border-bottom: 1px solid #1e2d3d;
+  }
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 768px) { .pipeline-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .pipeline-grid { grid-template-columns: 1fr; } }
+
+  .pipeline-card {
+    background: rgba(22, 32, 48, 0.5);
+    border: 1px solid #1e2d3d;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+  .pipeline-card:hover { border-color: rgba(61, 186, 130, 0.3); }
+
+  .step-num {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    font-family: monospace;
+    color: #3dba82;
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: opacity 0.2s;
+  }
+  .pipeline-card:hover .step-num { opacity: 0.5; }
+
+  .pipeline-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: monospace;
+  }
+  .pipeline-card p { color: #8f9aaa; font-size: 0.88rem; line-height: 1.6; }
+
+  /* ─── Features ──────────────────────────────── */
+  .feature { padding: 7rem 0; border-bottom: 1px solid #1e2d3d; }
+  .feature-alt { background: rgba(13, 26, 40, 0.3); }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .feature-grid.reverse { direction: rtl; }
+  .feature-grid.reverse > * { direction: ltr; }
+  @media (max-width: 768px) {
+    .feature-grid, .feature-grid.reverse { grid-template-columns: 1fr; direction: ltr; gap: 3rem; }
+  }
+
+  .feature-icon-wrap {
+    font-size: 1.5rem;
+    color: #3dba82;
+    background: rgba(61, 186, 130, 0.1);
+    border: 1px solid rgba(61, 186, 130, 0.2);
+    width: 3rem; height: 3rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-text h3 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .feature-text > p {
+    color: #8f9aaa;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .feature-list li {
+    font-size: 0.72rem;
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8f9aaa;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .feature-list li::before { content: "✓"; color: #3dba82; }
+
+  .feature-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .feature-two-col strong { display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .feature-two-col p { color: #8f9aaa; font-size: 0.85rem; line-height: 1.6; margin: 0; }
+
+  /* Code block */
+  .code-block {
+    background: #091018;
+    border: 1px solid #1e2d3d;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  }
+  .code-header {
+    background: #0d1a28;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #1e2d3d;
+  }
+  .code-dots { display: flex; gap: 0.35rem; }
+  .code-label {
+    margin-left: auto;
+    font-size: 0.68rem;
+    font-family: monospace;
+    letter-spacing: 0.1em;
+    color: #4a5568;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .code-body {
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #c8d0d8;
+    margin: 0;
+    overflow-x: auto;
+  }
+  .c-key   { color: #6dd9a8; }
+  .c-str   { color: #e0a97a; }
+  .c-punct { color: #8f9aaa; }
+
+  /* Sandbox monitor */
+  .sandbox-monitor {
+    background: #091018;
+    border: 1px solid #1e2d3d;
+    border-radius: 8px;
+    padding: 2rem;
+    font-family: monospace;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  }
+  .sandbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #1e2d3d;
+  }
+  .sandbox-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #8f9aaa;
+    background: #0d1a28;
+    border: 1px solid #1e2d3d;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+  }
+  .sandbox-live {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #3dba82;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #3dba82;
+    animation: pulse 1.5s infinite;
+  }
+  .sandbox-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #1e2d3d;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .sandbox-label { color: #4a5568; text-transform: uppercase; }
+  .sandbox-val.ok   { color: #3dba82; }
+  .sandbox-val.deny { color: #f87171; }
+
+  /* ─── Compatibility ─────────────────────────── */
+  .compat {
+    background: rgba(22, 32, 48, 0.3);
+    border-top: 1px solid #1e2d3d;
+    border-bottom: 1px solid #1e2d3d;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  .compat-label {
+    font-size: 0.68rem;
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #4a5568;
+    margin-bottom: 2.5rem;
+  }
+  .compat-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+  }
+  .compat-logos:hover { opacity: 0.8; }
+  .compat-item {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: monospace;
+    color: #8f9aaa;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Comparison table ──────────────────────── */
+  .comparison { padding: 7rem 0; border-bottom: 1px solid #1e2d3d; }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid #1e2d3d;
+    border-radius: 12px;
+    background: rgba(9, 16, 24, 0.6);
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr {
+    background: rgba(13, 26, 40, 0.8);
+    border-bottom: 1px solid #1e2d3d;
+  }
+  th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.68rem;
+    font-family: monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #4a5568;
+  }
+  .th-accent { color: #3dba82; }
+  tbody tr {
+    border-bottom: 1px solid #1e2d3d;
+    transition: background 0.15s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(61, 186, 130, 0.03); }
+  td {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    color: #8f9aaa;
+  }
+  td:first-child { color: #c8d0d8; font-weight: 600; }
+  .td-good {
+    color: #3dba82;
+    transition: transform 0.15s;
+  }
+  tbody tr:hover .td-good { transform: translateX(2px); }
+  .td-bad { color: #4a5568; }
+
+  /* ─── Open Source ───────────────────────────── */
+  .opensource {
+    background: rgba(9, 16, 24, 0.8);
+    border-top: 1px solid #1e2d3d;
+    border-bottom: 1px solid #1e2d3d;
+    padding: 7rem 0;
+  }
+  .opensource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  @media (max-width: 768px) { .opensource-grid { grid-template-columns: 1fr; } }
+
+  .opensource-text h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  .opensource-text > p {
+    color: #8f9aaa;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .opensource-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #1e2d3d;
+    border: 1px solid #1e2d3d;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat-card {
+    background: #0d1a28;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.2s;
+  }
+  .stat-card:hover { background: #162030; }
+  .stat-val {
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: monospace;
+    color: #3dba82;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4a5568;
+  }
+
+  /* ─── Final CTA ─────────────────────────────── */
+  .cta-section { padding: 8rem 0; }
+  .cta-box {
+    background: #0d1a28;
+    border: 1px solid #1e2d3d;
+    border-radius: 16px;
+    padding: 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (max-width: 768px) { .cta-box { padding: 3rem 1.5rem; } }
+
+  .cta-box h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  .cta-box > p {
+    color: #8f9aaa;
+    font-size: 1.1rem;
+    max-width: 50ch;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .install-block {
+    display: inline-block;
+    background: #091018;
+    border: 1px solid #1e2d3d;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .install-block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    color: #3dba82;
+    background: none;
+    padding: 0;
+  }
+
+  .cta-pills {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+</style>

@@ -7,21 +7,21 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   <!-- HERO -->
   <section class="hero">
     <div class="container">
+      <div class="badge hero-badge">
+        <span class="badge-dot"></span>
+        NOW STABLE V0.2.x
+      </div>
+
       <div class="hero-grid">
 
         <div class="hero-left">
-          <div class="badge">
-            <span class="badge-dot"></span>
-            NOW STABLE V0.2.x
-          </div>
-
           <h1>
-            Engineer AI agents<br />with <em>structure.</em>
+            Your AI coding workflow<br />with <em>engineer structure.</em>
           </h1>
 
           <p class="hero-sub">
-            Spec-to-Ship (s2s) is the structured engineering workflow for AI-assisted development.
-            Move from vague prompts to verifiable, stage-gated delivery.
+            Spec-to-Ship (s2s) is the stage-gated engineered workflow for AI-assisted development.
+            It brings AI conversations into engineering deliverables.
           </p>
 
           <div class="hero-actions">
@@ -45,19 +45,26 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
               <span class="terminal-label">zsh — 80x24</span>
             </div>
             <div class="terminal-body">
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">brew tap kiniuncorp/s2s</span></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">brew install s2s</span></div>
+              <div class="t-line t-dim">...</div>
+              <div class="t-spacer"></div>
               <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">s2s init</span></div>
-              <div class="t-line t-dim">Initializing spec-to-ship environment...</div>
-              <div class="t-line"><span class="t-prompt">?</span> <span class="t-hl">Select project type: TypeScript / Next.js</span></div>
-              <div class="t-line t-dim">✓ Detected existing schema.json</div>
-              <div class="t-line t-dim">✓ Configuring agent workspace in .s2s/</div>
               <div class="t-spacer"></div>
-              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">s2s pm "add auth flow"</span></div>
-              <div class="t-line t-accent">▶ Executing: Planning Agent</div>
-              <div class="t-line t-dim">[1/3] Parsing specification...</div>
-              <div class="t-line t-dim">[2/3] Mapping architecture to patterns...</div>
-              <div class="t-line t-dim">[3/3] Emitting implementation plan...</div>
+              <div class="t-line t-dim">┌─ Spec-To-Ship (s2s) v0.2.x ─────────────────</div>
+              <div class="t-line t-dim">│ Governed AI-assisted software delivery</div>
+              <div class="t-line t-dim">│ Target: ~/my-project</div>
+              <div class="t-line t-dim">└──────────────────────────────────────────────</div>
               <div class="t-spacer"></div>
-              <div class="t-line t-success">SUCCESS: Ready for engineering stage</div>
+              <div class="t-line t-dim">✓ Git repository detected</div>
+              <div class="t-line t-dim">✓ Governance files installed in .s2s/</div>
+              <div class="t-line t-dim">✓ Configuring stage agents...</div>
+              <div class="t-line t-dim">&nbsp; pm → research → design → engineering</div>
+              <div class="t-line t-dim">✓ Stage agents ready</div>
+              <div class="t-line t-dim">✓ Gates configured and ready</div>
+              <div class="t-spacer"></div>
+              <div class="t-line t-success">▶ You are now ready to ship production-grade code with AI.</div>
+              <div class="t-line t-success">▶ Open your AI chat and happy AI-coding!</div>
             </div>
           </div>
         </div>
@@ -66,33 +73,96 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     </div>
   </section>
 
-  <!-- PIPELINE -->
+  <!-- VIBE BREAK -->
+  <div class="vibe-break">
+    <div class="container">
+      <div class="vibe-box">
+        <p class="vibe-strike">Stop vibe coding.</p>
+        <p class="vibe-sub">Define the spec, run the stages, ship with confidence — every time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKFLOW -->
   <section class="pipeline">
     <div class="container">
       <div class="section-header">
-        <h2>The Pipeline</h2>
-        <p>s2s enforces a strict state machine for AI development, ensuring every code change has clear lineage back to requirements.</p>
+        <div class="section-eyebrow">How s2s Works</div>
+        <h2>From Intent to Code</h2>
+        <p>s2s enforces a stage-gated engineered workflow for AI development, ensuring every code change has clear lineage back to requirements.</p>
       </div>
-      <div class="pipeline-grid">
-        <div class="pipeline-card">
-          <span class="step-num">01</span>
-          <h3>Spec</h3>
-          <p>Define your requirements in structured Markdown. Intent is classified across nine work types.</p>
+
+      <div class="radial-wrap">
+        <div class="radial-line radial-v"></div>
+        <div class="radial-line radial-h"></div>
+
+        <!-- Center hub -->
+        <div class="orch-hub">
+          <!-- Default: hexagon -->
+          <div class="orch-default">
+            <div class="orch-hex-outer">
+              <div class="orch-hex-inner">
+                <span class="orch-title">ORCHESTRATOR</span>
+                <span class="orch-meta">Intent classifier</span>
+                <span class="orch-meta">Dynamic stages routing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hover: expanded card -->
+          <div class="orch-card">
+            <span class="orch-card-title">ORCHESTRATOR</span>
+            <span class="orch-card-meta">Intent classifier <span class="orch-dot">•</span> Dynamic stages routing</span>
+            <p class="orch-card-desc">The Orchestrator is s2s's central intelligence layer. It receives your natural language request, classifies the intent across 9 work types, and builds the minimum stage route needed — dispatching only the stages your change actually requires.</p>
+          </div>
         </div>
-        <div class="pipeline-card">
-          <span class="step-num">02</span>
-          <h3>Plan</h3>
-          <p>The agent maps requirements to your project's architecture and decides the minimum route needed.</p>
+
+        <!-- N: pm -->
+        <div class="stage-node node-n">
+          <div class="node-face">
+            <h3>Product Manager</h3>
+            <span class="node-arrow">›</span>
+          </div>
+          <div class="node-desc">
+            <p>Describe what you want to build. s2s captures the intent and classifies it before any code is touched.</p>
+          </div>
         </div>
-        <div class="pipeline-card">
-          <span class="step-num">03</span>
-          <h3>Code</h3>
-          <p>Deterministic generation in an isolated git worktree. Your main branch stays untouched.</p>
+
+        <!-- E: research -->
+        <div class="stage-node node-e">
+          <div class="node-face">
+            <h3>research</h3>
+            <span class="node-arrow">›</span>
+          </div>
+          <div class="node-desc">
+            <p>The agent explores the codebase, maps dependencies, and breaks the work into <strong>slices</strong> — bounded units tied to your requirements.</p>
+          </div>
         </div>
-        <div class="pipeline-card">
-          <span class="step-num">04</span>
-          <h3>Ship</h3>
-          <p>Human-approved, verified modules ready for PR and production deployment.</p>
+
+        <!-- S: design -->
+        <div class="stage-node node-s">
+          <div class="node-face">
+            <h3>design</h3>
+            <span class="node-arrow">›</span>
+          </div>
+          <div class="node-desc">
+            <p>Architecture decisions are locked in per slice before any code is written. Gates prevent skipping ahead.</p>
+          </div>
+        </div>
+
+        <!-- W: engineering -->
+        <div class="stage-node node-w">
+          <div class="node-face">
+            <h3>engineering</h3>
+            <span class="node-arrow">›</span>
+          </div>
+          <div class="node-desc">
+            <p>Each slice is executed in an isolated git worktree. Your main branch stays untouched until you approve.</p>
+            <div class="exec-loop">
+              <span class="exec-loop-badge">↻ engineering → engineering_exec</span>
+              <span class="exec-loop-label">per-slice iteration</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -103,37 +173,106 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     <div class="container">
       <div class="feature-grid">
         <div class="feature-text">
-          <div class="feature-icon-wrap">⚙</div>
-          <h3>Designed for machine consumption</h3>
-          <p>LLMs struggle with large, ambiguous codebases. s2s provides a machine-readable bridge — breaking projects into focused task packages that agents understand precisely, without hallucinating scope or dependencies.</p>
+          <div class="feature-icon-wrap">⚡</div>
+          <h3>Chat-native by design</h3>
+          <p class="feature-sub-green">Works where you already work</p>
+          <p>No new UI. No new editor. s2s runs alongside your preferred AI chat tool — Claude, Codex, or any other. Each stage injects exactly the right context into your conversation, so the model always knows what to build, why, and within what scope.</p>
           <ul class="feature-list">
-            <li>Intent-classified routing across nine work types</li>
-            <li>Structured task packages with bounded context</li>
-            <li>Token-efficient, noise-free artifact generation</li>
+            <li>Focused, bounded context package per stage</li>
+            <li>No hallucinated scope or stray dependencies</li>
+            <li>You approve the gates — AI does the work</li>
           </ul>
         </div>
         <div class="feature-visual">
-          <div class="code-block">
-            <div class="code-header">
-              <span class="code-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></span>
-              <span class="code-label">TASK PACKAGE</span>
+          <div class="chat-compare">
+
+            <!-- Without s2s -->
+            <div class="chat-panel">
+              <div class="chat-panel-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="chat-panel-title">chat — without s2s</span>
+              </div>
+              <div class="chat-body">
+                <div class="cli-line"><span class="cli-prompt">you</span> add auth to the app</div>
+                <div class="cli-spacer"></div>
+                <div class="cli-line"><span class="cli-prompt cli-ai">ai </span> <span class="cli-muted">Sure! I'll modify the database schema, update</span></div>
+                <div class="cli-line cli-indent"><span class="cli-muted">the API routes, the login page, session middleware,</span></div>
+                <div class="cli-line cli-indent"><span class="cli-muted">email verification, OAuth integration — oh and I'll</span></div>
+                <div class="cli-line cli-indent"><span class="cli-muted">refactor the user model while I'm at it.</span></div>
+                <div class="cli-spacer"></div>
+                <div class="cli-line cli-warn">⚠ scope unknown — AI decides blast radius</div>
+              </div>
             </div>
-            <pre class="code-body"><span class="c-key">"stage"</span><span class="c-punct">:</span> <span class="c-str">"engineering"</span><span class="c-punct">,</span>
-<span class="c-key">"intent"</span><span class="c-punct">:</span> <span class="c-str">"new_feature"</span><span class="c-punct">,</span>
-<span class="c-key">"slice"</span><span class="c-punct">:</span> <span class="c-str">"auth-flow-jwt"</span><span class="c-punct">,</span>
-<span class="c-key">"context"</span><span class="c-punct">: {</span>
-  <span class="c-key">"spec"</span><span class="c-punct">:</span> <span class="c-str">"specs/auth.md"</span><span class="c-punct">,</span>
-  <span class="c-key">"prior_artifacts"</span><span class="c-punct">: [</span>
-    <span class="c-str">"pm/plan.md"</span><span class="c-punct">,</span>
-    <span class="c-str">"design/spec.md"</span>
-  <span class="c-punct">]</span>
-<span class="c-punct">},</span>
-<span class="c-key">"output_path"</span><span class="c-punct">:</span>
-  <span class="c-str">".s2s/artifacts/eng.md"</span></pre>
+
+            <!-- With s2s -->
+            <div class="chat-panel chat-panel-good">
+              <div class="chat-panel-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="chat-panel-title">chat — with s2s</span>
+              </div>
+              <div class="chat-body">
+                <div class="cli-line"><span class="cli-prompt">you</span> add auth to the app</div>
+                <div class="cli-spacer"></div>
+                <div class="cli-line cli-dim">┌─ Orchestrator ────────────────────────────</div>
+                <div class="cli-line cli-dim">│ Intent:  <span class="cli-green">new_feature</span></div>
+                <div class="cli-line cli-dim">│ Route:   <span class="cli-green">pm → research → design → engineering</span></div>
+                <div class="cli-line cli-dim">└───────────────────────────────────────────</div>
+                <div class="cli-spacer"></div>
+                <div class="cli-line"><span class="cli-accent">▶ pm        </span><span class="cli-muted">spec captured → spec-a1b2</span></div>
+                <div class="cli-line"><span class="cli-accent">▶ research  </span><span class="cli-muted">scope bounded to src/auth/ · 2 slices</span></div>
+                <div class="cli-line"><span class="cli-accent">▶ design    </span><span class="cli-muted">interfaces locked · gate pending</span></div>
+                <div class="cli-spacer"></div>
+                <div class="cli-line cli-gate">[s2s] Gate: gate-c3d4 · Review the diff. Tell your AI when ready.</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
+      <p class="feature-full-tagline">Your AI does the work — s2s makes sure it stays on track.</p>
+
+      <div class="compat-row">
+        <div class="compat-inner">
+          <div class="compat-header">
+            <span class="compat-label">Works with your stack</span>
+            <span class="compat-sub">Drop-in alongside any AI coding client — no migration, no lock-in.</span>
+          </div>
+        <div class="compat-logos">
+
+          <!-- Claude Code (Anthropic logo) -->
+          <div class="compat-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>
+            <span>Claude Code</span>
+          </div>
+
+          <!-- Codex Desktop (OpenAI logo) -->
+          <div class="compat-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+            <span>Codex Desktop</span>
+          </div>
+
+          <!-- Codex CLI (OpenAI logo) -->
+          <div class="compat-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+            <span>Codex CLI</span>
+          </div>
+
+          <!-- OpenCode CLI (terminal icon) -->
+          <div class="compat-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            <span>OpenCode CLI</span>
+          </div>
+
+          <!-- Any AI Chat / CLI -->
+          <div class="compat-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18"/></svg>
+            <span>Any AI Chat / CLI</span>
+          </div>
+
+        </div><!-- /.compat-logos -->
+        </div><!-- /.compat-inner -->
+      </div><!-- /.compat-row -->
+    </div><!-- /.container -->
   </section>
 
   <!-- FEATURE 2 -->
@@ -141,62 +280,139 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     <div class="container">
       <div class="feature-grid reverse">
         <div class="feature-visual">
-          <div class="sandbox-monitor">
-            <div class="sandbox-header">
-              <span class="sandbox-badge">SANDBOX MONITOR</span>
-              <span class="sandbox-live"><span class="live-dot"></span> LIVE</span>
+          <div class="gate-terminal">
+            <div class="gate-term-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="gate-term-title">zsh — s2s gate flow</span>
             </div>
-            <div class="sandbox-row">
-              <span class="sandbox-label">WORKTREE</span>
-              <span class="sandbox-val ok">ISOLATED</span>
-            </div>
-            <div class="sandbox-row">
-              <span class="sandbox-label">MAIN BRANCH</span>
-              <span class="sandbox-val ok">UNTOUCHED</span>
-            </div>
-            <div class="sandbox-row">
-              <span class="sandbox-label">NET ACCESS</span>
-              <span class="sandbox-val deny">DENY (default)</span>
-            </div>
-            <div class="sandbox-row">
-              <span class="sandbox-label">FILE SCOPE</span>
-              <span class="sandbox-val ok">SCOPED TO SLICE</span>
-            </div>
-            <div class="sandbox-row">
-              <span class="sandbox-label">HUMAN GATE</span>
-              <span class="sandbox-val ok">REQUIRED</span>
+            <div class="gate-term-body">
+              <div class="g-line g-dim">▶ Executing slice: auth-flow-jwt</div>
+              <div class="g-line g-dim">  ✓ Worktree: .s2s/worktrees/auth-flow-jwt</div>
+              <div class="g-line g-dim">  ✓ Branch:   s2s/auth-flow-jwt</div>
+              <div class="g-line g-dim">  ✓ Main:     untouched</div>
+              <div class="g-spacer"></div>
+              <div class="g-line g-dim">  Modified  src/auth/jwt.ts        <span class="g-add">+124</span> <span class="g-del">-0</span></div>
+              <div class="g-line g-dim">  Modified  src/auth/middleware.ts  <span class="g-add">+45</span>  <span class="g-del">-12</span></div>
+              <div class="g-line g-dim">  Created   src/auth/types.ts       <span class="g-add">+38</span>  <span class="g-del">-0</span></div>
+              <div class="g-spacer"></div>
+              <div class="g-line g-gate">[s2s] Gate: gate-a1b2c3</div>
+              <div class="g-line g-gate">      Review the diff. Tell your AI when ready.</div>
+              <div class="g-spacer"></div>
+              <div class="g-line g-sep">────────────────────────────────────────────</div>
+              <div class="g-spacer"></div>
+              <div class="g-line"><span class="g-you">you</span> looks good, proceed</div>
+              <div class="g-spacer"></div>
+              <div class="g-line g-dim">  ✓ gate-a1b2c3 approved</div>
+              <div class="g-line g-ok">  ✓ Changes merged to main</div>
+              <div class="g-line g-dim">  ✓ Worktree cleaned up</div>
             </div>
           </div>
         </div>
         <div class="feature-text">
           <div class="feature-icon-wrap">⬡</div>
-          <h3>Execution without fear</h3>
-          <p>Never run agent code directly in your working directory. s2s executes all code changes in an isolated git worktree on a dedicated branch. Your main branch is clean until you explicitly review and approve.</p>
-          <div class="feature-two-col">
-            <div>
-              <strong>Scoped execution</strong>
-              <p>Each run targets one Slice — a bounded unit derived from your spec — limiting blast radius.</p>
-            </div>
-            <div>
-              <strong>Approval gates</strong>
-              <p>Nothing advances without a deliberate human decision via <code>s2s approve</code>.</p>
-            </div>
-          </div>
+          <h3>AI proposes. You decide.</h3>
+          <p class="feature-sub-green">You're always in control</p>
+          <p>Every code change runs in an isolated git worktree on a dedicated branch. Your main branch stays clean until you review the diff and tell your AI to proceed. Nothing merges without a deliberate human decision.</p>
+          <ul class="feature-list">
+            <li>Isolated worktree per slice — main branch untouched</li>
+            <li>Full diff review before anything is merged</li>
+            <li>Gates enforce the human-in-the-loop at every stage</li>
+            <li>Worktree cleaned up automatically after approval</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- COMPATIBILITY -->
-  <section class="compat">
+
+  <!-- TOKEN EFFICIENCY -->
+  <section class="token-section">
     <div class="container">
-      <div class="compat-label">Works with your stack</div>
-      <div class="compat-logos">
-        <span class="compat-item">Claude Code</span>
-        <span class="compat-item">OpenAI Codex</span>
-        <span class="compat-item">TypeScript</span>
-        <span class="compat-item">Node.js</span>
-        <span class="compat-item">Homebrew</span>
+      <div class="section-header">
+        <div class="section-eyebrow">Token Efficiency</div>
+        <h2>Less overhead. Lower cost.</h2>
+        <p class="token-section-sub">s2s handles orchestration, routing, and state management in the binary — zero LLM tokens charged. Your AI only sees focused context for the work it actually needs to do.</p>
+      </div>
+
+      <div class="overhead-grid">
+        <!-- Without s2s -->
+        <div class="overhead-box overhead-bad">
+          <div class="overhead-box-header">
+            <span class="oh-icon-bad">⚠</span>
+            <span class="overhead-box-title">Without s2s</span>
+          </div>
+          <div class="overhead-rows">
+            <div class="overhead-row">
+              <span class="oh-key">Orient at session start</span>
+              <span class="oh-val oh-bad">~800 tok</span>
+            </div>
+            <div class="overhead-row">
+              <span class="oh-key">Reconstruct prior decisions</span>
+              <span class="oh-val oh-bad">~1,200 tok</span>
+            </div>
+            <div class="overhead-row">
+              <span class="oh-key">Workflow reasoning</span>
+              <span class="oh-val oh-bad">~600 tok</span>
+            </div>
+            <div class="overhead-row oh-total-row">
+              <span class="oh-key oh-total-key">Session overhead</span>
+              <span class="oh-val oh-bad oh-total">~2,600 tok</span>
+            </div>
+          </div>
+          <div class="oh-note">Per 2-stage feature. Scales with project complexity.</div>
+        </div>
+
+        <!-- Center stat -->
+        <div class="overhead-divider">
+          <div class="overhead-stat-wrap">
+            <span class="overhead-stat-num">~94%</span>
+            <span class="overhead-stat-label">less overhead</span>
+            <span class="overhead-stat-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- With s2s -->
+        <div class="overhead-box overhead-good">
+          <div class="overhead-box-header">
+            <span class="oh-icon-good">✓</span>
+            <span class="overhead-box-title oh-title-good">With s2s</span>
+          </div>
+          <div class="overhead-rows">
+            <div class="overhead-row">
+              <span class="oh-key">Read live.md context</span>
+              <span class="oh-val oh-good">~150 tok</span>
+            </div>
+            <div class="overhead-row">
+              <span class="oh-key">Workflow reasoning</span>
+              <span class="oh-val oh-zero">0 tok</span>
+            </div>
+            <div class="overhead-row">
+              <span class="oh-key">State reconstruction</span>
+              <span class="oh-val oh-zero">0 tok</span>
+            </div>
+            <div class="overhead-row oh-total-row">
+              <span class="oh-key oh-total-key">Session overhead</span>
+              <span class="oh-val oh-good oh-total">~150 tok</span>
+            </div>
+          </div>
+          <div class="oh-note">AI gets a focused package — not the full conversation history.</div>
+        </div>
+      </div>
+
+      <!-- Zero-token operations -->
+      <div class="zero-ops">
+        <div class="zero-ops-label">These run in the s2s binary — zero tokens, every run:</div>
+        <div class="zero-ops-chips">
+          <span class="zero-chip">intent classification</span>
+          <span class="zero-chip">stage routing</span>
+          <span class="zero-chip">context packaging</span>
+          <span class="zero-chip">state management</span>
+          <span class="zero-chip">worktree isolation</span>
+          <span class="zero-chip">gate lifecycle</span>
+          <span class="zero-chip">git delivery</span>
+          <span class="zero-chip">artifact storage</span>
+          <span class="zero-chip">quality checks</span>
+        </div>
       </div>
     </div>
   </section>
@@ -205,8 +421,9 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   <section class="comparison">
     <div class="container">
       <div class="section-header">
+        <div class="section-eyebrow">Why s2s</div>
         <h2>Engineered for Reliability</h2>
-        <p>Compare the ungoverned AI coding experience with the structured s2s methodology.</p>
+        <p>The difference between an AI that guesses and one that follows a governed engineering workflow.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -220,23 +437,28 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
           <tbody>
             <tr>
               <td>Scope control</td>
-              <td class="td-bad">AI decides what to build</td>
-              <td class="td-good">Intent-classified, stage-gated routing</td>
+              <td class="td-bad">AI decides what to build and how far to go</td>
+              <td class="td-good">Intent classified → minimum stage route selected</td>
             </tr>
             <tr>
               <td>Execution safety</td>
-              <td class="td-bad">Code runs in your workspace</td>
-              <td class="td-good">Isolated git worktrees per slice</td>
+              <td class="td-bad">Code lands directly in your workspace</td>
+              <td class="td-good">Isolated git worktree per slice — main stays clean</td>
             </tr>
             <tr>
-              <td>State & audit</td>
-              <td class="td-bad">Lost when chat window closes</td>
-              <td class="td-good">Persistent artifacts in .s2s/</td>
+              <td>State & audit trail</td>
+              <td class="td-bad">Lost when the chat window closes</td>
+              <td class="td-good">Persistent specs, plans, and diffs in .s2s/</td>
             </tr>
             <tr>
-              <td>Review process</td>
-              <td class="td-bad">Ad-hoc, no approval trail</td>
-              <td class="td-good">Structured gates via s2s approve</td>
+              <td>Human oversight</td>
+              <td class="td-bad">Ad-hoc, no approval structure</td>
+              <td class="td-good">Structured gates — you review the diff, you decide</td>
+            </tr>
+            <tr>
+              <td>AI client</td>
+              <td class="td-bad">Locked to one tool or workflow</td>
+              <td class="td-good">Works with Claude Code, Codex, OpenCode, any chat</td>
             </tr>
           </tbody>
         </table>
@@ -249,8 +471,9 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     <div class="container">
       <div class="opensource-grid">
         <div class="opensource-text">
-          <h2>Open Source by Design</h2>
-          <p>s2s is built for the community. We believe the future of AI-assisted engineering depends on open, auditable standards for agent governance.</p>
+          <div class="section-eyebrow" style="text-align:left">Open Source</div>
+          <h2>Built in the open.<br />Governed by design.</h2>
+          <p>s2s is MIT-licensed and community-driven. The governance layer, the stage agents, and the gate protocol are all auditable — because engineering standards for AI should be transparent.</p>
           <div class="opensource-actions">
             <a href="https://github.com/KiniunCorp/spec-to-ship" class="btn-primary" target="_blank" rel="noopener">STAR ON GITHUB</a>
             <a href="https://github.com/KiniunCorp/spec-to-ship/blob/main/ROADMAP.md" class="btn-secondary" target="_blank" rel="noopener">VIEW ROADMAP</a>
@@ -266,8 +489,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
             <span class="stat-label">LICENSE</span>
           </div>
           <div class="stat-card">
-            <span class="stat-val">2</span>
-            <span class="stat-label">AI CLIENTS</span>
+            <span class="stat-val">4</span>
+            <span class="stat-label">STAGES</span>
           </div>
           <div class="stat-card">
             <span class="stat-val">9</span>
@@ -282,15 +505,25 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   <section class="cta-section">
     <div class="container">
       <div class="cta-box">
-        <h2>Ready to ship with structure?</h2>
-        <p>Start using s2s in your project today — it installs in seconds and works with your existing Claude Code or Codex setup.</p>
-        <div class="install-block">
-          <code>npm install -g spec-to-ship</code>
+        <div class="cta-glow"></div>
+        <h2>Ship with structure.<br /><em>Starting today.</em></h2>
+        <p>Install in seconds. Works with your existing AI chat tool. No new UI, no lock-in — just a governed workflow for every change.</p>
+        <div class="install-steps">
+          <div class="install-block">
+            <code><span class="install-prompt">$</span> brew tap kiniuncorp/s2s &amp;&amp; brew install s2s</code>
+          </div>
+          <div class="install-block">
+            <code><span class="install-prompt">$</span> s2s init</code>
+          </div>
+        </div>
+        <div class="cta-actions">
+          <a href="/en/quickstart/" class="btn-primary">GET STARTED</a>
+          <a href="/en/introduction/" class="btn-secondary">READ THE DOCS</a>
         </div>
         <div class="cta-pills">
-          <span class="pill">✓ Open Source</span>
+          <span class="pill">✓ Open Source · MIT</span>
           <span class="pill">✓ No Lock-in</span>
-          <span class="pill">✓ Claude Code + Codex</span>
+          <span class="pill">✓ Claude Code · Codex · OpenCode · any chat</span>
         </div>
       </div>
     </div>
@@ -302,6 +535,17 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   /* Make splash content full-width */
   .sl-markdown-content { max-width: 100% !important; }
   [data-has-hero] .hero-wrapper { padding: 0 !important; }
+  /* Hide the Starlight auto-rendered page title on the homepage */
+  #_top { display: none !important; }
+  /* Remove the content-panel top padding that creates a blank strip */
+  .content-panel { padding-top: 0 !important; }
+  /* Kill Starlight global margin injection on block elements inside our homepage sections */
+  .sl-markdown-content section h2,
+  .sl-markdown-content section p,
+  .sl-markdown-content section div,
+  .sl-markdown-content section span { margin-top: 0; }
+  /* Kill margins inside stage nodes specifically */
+  .stage-node * { margin-top: 0 !important; }
 </style>
 
 <style>
@@ -314,20 +558,25 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
   .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
   }
   .section-header h2 {
     font-size: clamp(2rem, 4vw, 2.75rem);
     font-weight: 800;
     color: #fff;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    border: none;
   }
   .section-header p {
     color: #8f9aaa;
     font-size: 1.1rem;
-    max-width: 52ch;
+    max-width: 72ch;
     margin: 0 auto;
     line-height: 1.6;
+    border: none;
+    padding: 0;
+    background: none;
   }
 
   /* ─── Buttons ───────────────────────────────── */
@@ -363,7 +612,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
   /* ─── Hero ──────────────────────────────────── */
   .hero {
-    padding: 5rem 0 6rem;
+    padding: 0.25rem 0 5rem;
     border-bottom: 1px solid #1e2d3d;
   }
   .hero-grid {
@@ -389,6 +638,10 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     font-weight: 700;
     margin-bottom: 2rem;
   }
+  .hero-badge {
+    margin-bottom: 1.5rem;
+  }
+
   .badge-dot {
     width: 7px; height: 7px;
     border-radius: 50%;
@@ -456,8 +709,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   .dot.green  { background: #27c93f; }
   .terminal-label { margin-left: auto; color: #4a5568; font-size: 0.72rem; }
 
-  .terminal-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.2rem; }
-  .t-line { line-height: 1.6; color: #c8d0d8; }
+  .terminal-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0; }
+  .t-line { line-height: 1.35; color: #c8d0d8; margin: 0; }
   .t-dim    { color: #4a5568; }
   .t-accent { color: #3dba82; }
   .t-success { color: #3dba82; font-weight: 600; }
@@ -466,51 +719,346 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   .t-cmd    { color: #c8d0d8; }
   .t-spacer { height: 0.5rem; }
 
-  /* ─── Pipeline ──────────────────────────────── */
+  /* ─── Vibe Break ───────────────────────────── */
+  .vibe-break {
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid #1e2d3d;
+  }
+  .vibe-box {
+    display: inline-block;
+    background: #0d1a28;
+    border: 1px solid rgba(61, 186, 130, 0.25);
+    border-radius: 4px;
+    padding: 2.5rem 4rem;
+    box-shadow:
+      0 0 60px rgba(61, 186, 130, 0.08),
+      0 0 120px rgba(61, 186, 130, 0.04),
+      inset 0 0 60px rgba(61, 186, 130, 0.03);
+  }
+  @media (max-width: 640px) { .vibe-box { padding: 2rem 1.5rem; } }
+  .vibe-strike {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #4a5568;
+    text-decoration: line-through;
+    text-decoration-color: #3dba82;
+    text-decoration-thickness: 2px;
+    margin: 0 0 0.75rem;
+    font-family: monospace;
+    letter-spacing: -0.01em;
+  }
+  .vibe-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #c8d0d8;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ─── Workflow (radial) ─────────────────────── */
+  .section-eyebrow {
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #3dba82;
+    margin: 0 0 0.75rem 0;
+    display: block;
+  }
+
   .pipeline {
     background: rgba(13, 26, 40, 0.4);
     padding: 6rem 0;
     border-bottom: 1px solid #1e2d3d;
   }
-  .pipeline-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-  @media (max-width: 768px) { .pipeline-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .pipeline-grid { grid-template-columns: 1fr; } }
 
-  .pipeline-card {
-    background: rgba(22, 32, 48, 0.5);
-    border: 1px solid #1e2d3d;
-    padding: 2rem;
-    transition: border-color 0.2s;
+  /* ─── Radial wrap ───────────────────────────── */
+  .radial-wrap {
+    position: relative;
+    height: 640px;
+    max-width: 780px;
+    margin: 0 auto;
   }
-  .pipeline-card:hover { border-color: rgba(61, 186, 130, 0.3); }
 
-  .step-num {
-    display: block;
-    font-size: 3rem;
-    font-weight: 800;
+  .radial-line {
+    position: absolute;
+    z-index: 0;
+    background: linear-gradient(var(--dir), transparent, #1e2d3d 30%, #1e2d3d 70%, transparent);
+  }
+  .radial-v {
+    --dir: to bottom;
+    top: 0; bottom: 0;
+    left: 50%; width: 1px;
+    transform: translateX(-50%);
+  }
+  .radial-h {
+    --dir: to right;
+    left: 0; right: 0;
+    top: 50%; height: 1px;
+    transform: translateY(-50%);
+  }
+
+  /* ─── Orchestrator hub ───────────────────────── */
+  .orch-hub {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 440px;
+    height: 290px;
+    cursor: default;
+  }
+
+  /* Default hex state */
+  .orch-default {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.25s ease;
+  }
+  .orch-hub:hover .orch-default { opacity: 0; pointer-events: none; }
+
+  .orch-hex-outer {
+    width: 200px;
+    height: 200px;
+    background: #3dba82;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 20px rgba(61, 186, 130, 0.35));
+  }
+  .orch-hex-inner {
+    width: 188px;
+    height: 188px;
+    background: #091018;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 2.5rem 2rem;
+  }
+  .orch-title {
     font-family: monospace;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: #3dba82;
-    opacity: 0.2;
-    line-height: 1;
-    margin-bottom: 1rem;
-    transition: opacity 0.2s;
+    margin: 0;
   }
-  .pipeline-card:hover .step-num { opacity: 0.5; }
+  .orch-meta {
+    font-family: monospace;
+    font-size: 0.58rem;
+    color: #8f9aaa;
+    letter-spacing: 0.06em;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .orch-dot { color: #3dba82; margin: 0 0.2em; }
 
-  .pipeline-card h3 {
-    font-size: 1.1rem;
+  /* Expanded card state */
+  .orch-card {
+    position: absolute;
+    inset: 0;
+    background: #0d1a28;
+    border: 1px solid #3dba82;
+    box-shadow: 0 0 48px rgba(61, 186, 130, 0.15);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2.5rem;
+    text-align: center;
+    gap: 0.6rem;
+    transition: opacity 0.25s ease 0.1s;
+    pointer-events: none;
+  }
+  .orch-hub:hover .orch-card { opacity: 1; pointer-events: auto; }
+
+  .orch-card-title {
+    font-family: monospace;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #3dba82;
+    margin: 0;
+    line-height: 1;
+  }
+  .orch-card-meta {
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: #c8d0d8;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+  .orch-card-desc {
+    font-size: 0.85rem;
+    color: #8f9aaa;
+    line-height: 1.65;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    border: none;
+    background: none;
+    max-width: 38ch;
+  }
+
+  /* ─── Stage circles ──────────────────────────── */
+  .stage-node {
+    position: absolute;
+    z-index: 2;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: #0d1a28;
+    border: 1px solid #1e2d3d;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition:
+      width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.2s;
+    cursor: default;
+  }
+  .stage-node:hover {
+    width: 210px;
+    height: 220px;
+    border-radius: 10px;
+    border-color: rgba(61, 186, 130, 0.4);
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .node-w:hover, .node-e:hover { height: 240px; }
+
+  .node-n { top: 0;    left: 50%; transform: translateX(-50%); }
+  .node-e { right: 0;  top: 50%;  transform: translateY(-50%); }
+  .node-s { bottom: 0; left: 50%; transform: translateX(-50%); }
+  .node-w { left: 0;   top: 50%;  transform: translateY(-50%); }
+
+  .node-face {
+    width: 100%;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    gap: 0.35rem;
+    transition: min-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s;
+  }
+  .stage-node:hover .node-face {
+    min-height: 0;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
+    justify-content: flex-start;
+  }
+  .stage-node h3 {
+    font-size: 0.72rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     font-family: monospace;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    padding: 0 0.5rem;
+    word-break: break-word;
   }
-  .pipeline-card p { color: #8f9aaa; font-size: 0.88rem; line-height: 1.6; }
+  .node-arrow {
+    display: block;
+    color: #3dba82;
+    font-size: 2.8rem;
+    line-height: 0.8;
+    transform: rotate(90deg);
+    opacity: 0.7;
+    margin: 0;
+    transition: opacity 0.2s, transform 0.3s;
+  }
+  .stage-node:hover .node-arrow {
+    opacity: 0;
+    transform: rotate(90deg) translateX(10px);
+  }
+
+  /* Description — revealed on hover */
+  .node-desc {
+    width: 100%;
+    padding: 0 1.1rem 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease 0.2s;
+  }
+  .stage-node:hover .node-desc { opacity: 1; }
+  .node-desc p {
+    color: #8f9aaa;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    text-align: center;
+  }
+  .node-desc strong { color: #c8d0d8; font-weight: 700; }
+
+  .exec-loop {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-top: 0.75rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid #1e2d3d;
+  }
+  .exec-loop-badge {
+    font-family: monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    color: #3dba82;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+  .exec-loop-label {
+    font-family: monospace;
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a5568;
+    text-align: center;
+  }
+
+  /* Mobile fallback */
+  @media (max-width: 700px) {
+    .radial-wrap {
+      height: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 100%;
+    }
+    .radial-line { display: none; }
+    .orch-hub { position: static; transform: none; grid-column: 1 / -1; }
+    .orch-hex-outer { margin: 0 auto; }
+    .stage-node {
+      position: static;
+      transform: none;
+      width: 100%; height: auto;
+      border-radius: 8px;
+    }
+    .stage-node:hover { width: 100%; }
+    .node-desc { opacity: 1; }
+  }
 
   /* ─── Features ──────────────────────────────── */
   .feature { padding: 7rem 0; border-bottom: 1px solid #1e2d3d; }
@@ -582,6 +1130,108 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   .feature-two-col strong { display: block; color: #fff; font-size: 0.9rem; margin-bottom: 0.4rem; }
   .feature-two-col p { color: #8f9aaa; font-size: 0.85rem; line-height: 1.6; margin: 0; }
 
+  .feature-sub-green {
+    font-family: monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #3dba82;
+    margin: -0.5rem 0 1rem;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  .feature-full-tagline {
+    text-align: center;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    color: #c8d0d8;
+    margin: 1.5rem 0 0;
+    padding: 1.5rem 0 0;
+    border: none !important;
+    background: none;
+    box-shadow: none;
+  }
+  .feature-full-tagline::before {
+    content: '— ';
+    color: #3dba82;
+  }
+  .feature-full-tagline::after {
+    content: ' —';
+    color: #3dba82;
+  }
+
+  /* Chat compare visual */
+  .chat-compare {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .chat-panel {
+    background: #0d1a28;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1e2d3d;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+  }
+  .chat-panel-good {
+    border-color: rgba(61, 186, 130, 0.25);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3), 0 0 32px rgba(61,186,130,0.06);
+  }
+  .chat-panel-header {
+    background: #162030;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #1e2d3d;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .chat-panel-title {
+    margin-left: 0.5rem;
+    font-size: 0.62rem;
+    color: #4a5568;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .chat-body {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .cli-line {
+    line-height: 1.5;
+    color: #c8d0d8;
+    margin: 0;
+    white-space: pre;
+  }
+  .cli-indent { padding-left: 2.6rem; }
+  .cli-spacer { height: 0.5rem; }
+  .cli-prompt {
+    color: #3dba82;
+    font-weight: 700;
+    margin-right: 0.75rem;
+  }
+  .cli-prompt.cli-ai { color: #4a5568; }
+  .cli-muted  { color: #4a5568; }
+  .cli-dim    { color: #2a3a4a; }
+  .cli-green  { color: #3dba82; }
+  .cli-accent { color: #3dba82; font-weight: 700; }
+  .cli-warn   {
+    color: #f87171;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-top: 0.25rem;
+  }
+  .cli-gate {
+    color: #3dba82;
+    font-size: 0.68rem;
+    font-weight: 600;
+  }
+
   /* Code block */
   .code-block {
     background: #091018;
@@ -620,6 +1270,38 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   .c-key   { color: #6dd9a8; }
   .c-str   { color: #e0a97a; }
   .c-punct { color: #8f9aaa; }
+
+  /* Gate terminal */
+  .gate-terminal {
+    background: #0d1a28;
+    border: 1px solid #1e2d3d;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  }
+  .gate-term-header {
+    background: #162030;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 1px solid #1e2d3d;
+  }
+  .gate-term-title { margin-left: 0.5rem; color: #4a5568; font-size: 0.68rem; }
+  .gate-term-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; }
+  .g-line { line-height: 1.5; color: #c8d0d8; margin: 0; white-space: pre; }
+  .g-spacer { height: 0.4rem; }
+  .g-prompt { color: #3dba82; margin-right: 0.5rem; font-weight: 700; }
+  .g-cmd    { color: #c8d0d8; }
+  .g-dim    { color: #4a5568; }
+  .g-ok     { color: #3dba82; }
+  .g-gate   { color: #3dba82; font-weight: 600; }
+  .g-add    { color: #3dba82; }
+  .g-del    { color: #f87171; }
+  .g-sep    { color: #1e2d3d; }
+  .g-you    { color: #c8d0d8; font-weight: 700; margin-right: 0.75rem; }
 
   /* Sandbox monitor */
   .sandbox-monitor {
@@ -677,38 +1359,270 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   .sandbox-val.ok   { color: #3dba82; }
   .sandbox-val.deny { color: #f87171; }
 
-  /* ─── Compatibility ─────────────────────────── */
-  .compat {
-    background: rgba(22, 32, 48, 0.3);
-    border-top: 1px solid #1e2d3d;
-    border-bottom: 1px solid #1e2d3d;
-    padding: 4rem 0;
+  /* ─── Compatibility row (inside feature 1) ──── */
+  .compat-row {
+    margin-top: 4rem;
+  }
+  .compat-inner {
+    background: #091018;
+    border-radius: 10px;
+    padding: 4rem 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .compat-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
     text-align: center;
   }
   .compat-label {
-    font-size: 0.68rem;
+    font-size: 1.2rem;
     font-family: monospace;
     font-weight: 700;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #4a5568;
-    margin-bottom: 2.5rem;
+    color: #3dba82;
+  }
+  .compat-sub {
+    font-size: 0.78rem;
+    font-family: monospace;
+    color: #3dba82;
+    opacity: 0.7;
+    letter-spacing: 0.03em;
   }
   .compat-logos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;
-    opacity: 0.4;
-    transition: opacity 0.2s;
+    gap: 0.75rem;
+    width: 100%;
   }
-  .compat-logos:hover { opacity: 0.8; }
   .compat-item {
-    font-size: 1rem;
-    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 1.1rem 1.4rem;
+    min-width: 90px;
+    background: rgba(61, 186, 130, 0.06);
+    border: 1px solid rgba(61, 186, 130, 0.15);
+    border-radius: 8px;
+    color: rgba(61, 186, 130, 0.5);
+    transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s;
+    cursor: default;
+  }
+  .compat-item:hover {
+    color: #3dba82;
+    border-color: rgba(61,186,130,0.4);
+    background: rgba(61, 186, 130, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 24px rgba(61,186,130,0.1);
+  }
+  .compat-item svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .compat-item:hover svg { transform: scale(1.1); }
+  .compat-item span {
+    font-size: 0.6rem;
     font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ─── Token Efficiency ──────────────────────── */
+  .token-section {
+    padding: 7rem 0;
+    background: rgba(9, 16, 24, 0.7);
+    border-bottom: 1px solid #1e2d3d;
+  }
+  .token-section-sub {
     color: #8f9aaa;
-    letter-spacing: 0.05em;
+    font-size: 1.05rem;
+    max-width: 64ch;
+    margin: 0 auto;
+    line-height: 1.6;
+    border: none;
+    padding: 0;
+    background: none;
+  }
+
+  .overhead-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto 3rem;
+    gap: 0;
+  }
+  @media (max-width: 700px) {
+    .overhead-grid { grid-template-columns: 1fr; }
+  }
+
+  .overhead-box {
+    background: #0d1a28;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .overhead-bad { border: 1px solid #1e2d3d; }
+  .overhead-good {
+    border: 1px solid rgba(61,186,130,0.3);
+    box-shadow: 0 0 32px rgba(61,186,130,0.06);
+  }
+
+  .overhead-box-header {
+    padding: 0.8rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #1e2d3d;
+    background: #162030;
+  }
+  .oh-icon-bad  { font-size: 0.85rem; color: #4a5568; }
+  .oh-icon-good { font-size: 0.85rem; color: #3dba82; }
+  .overhead-box-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4a5568;
+  }
+  .oh-title-good { color: #3dba82; }
+
+  .overhead-rows {
+    padding: 1.1rem 1.25rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .overhead-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(30,45,61,0.6);
+    gap: 1rem;
+  }
+  .overhead-row:last-child { border-bottom: none; }
+  .oh-total-row {
+    border-top: 1px solid #1e2d3d;
+    border-bottom: none !important;
+    padding-top: 0.65rem;
+    margin-top: 0.2rem;
+  }
+  .oh-key {
+    font-size: 0.7rem;
+    color: #4a5568;
+    white-space: nowrap;
+  }
+  .oh-total-key { color: #8f9aaa; font-weight: 600; }
+  .oh-val {
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .oh-bad  { color: #f87171; }
+  .oh-good { color: #3dba82; }
+  .oh-zero { color: rgba(61,186,130,0.45); }
+  .oh-total { font-size: 0.82rem; }
+  .oh-note {
+    padding: 0.5rem 1.25rem 0.9rem;
+    font-size: 0.6rem;
+    color: #2a3a4a;
+    font-family: monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .overhead-divider {
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 700px) {
+    .overhead-divider { padding: 1.5rem 0; }
+  }
+  .overhead-stat-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    text-align: center;
+  }
+  .overhead-stat-num {
+    font-family: monospace;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #3dba82;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .overhead-stat-label {
+    font-family: monospace;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4a5568;
+    white-space: nowrap;
+  }
+  .overhead-stat-arrow {
+    font-size: 1.25rem;
+    color: rgba(61,186,130,0.35);
+    margin-top: 0.5rem;
+    display: block;
+  }
+  @media (max-width: 700px) {
+    .overhead-stat-arrow { transform: rotate(90deg); }
+  }
+
+  .zero-ops {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .zero-ops-label {
+    font-family: monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4a5568;
+  }
+  .zero-ops-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .zero-chip {
+    background: #091018;
+    border: 1px solid #1e2d3d;
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    font-family: monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #3dba82;
+    white-space: nowrap;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .zero-chip:hover {
+    border-color: rgba(61,186,130,0.4);
+    background: #0d1a28;
   }
 
   /* ─── Comparison table ──────────────────────── */
@@ -831,35 +1745,69 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   }
   @media (max-width: 768px) { .cta-box { padding: 3rem 1.5rem; } }
 
+  .cta-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(61,186,130,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
   .cta-box h2 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 900;
     color: #fff;
     margin-bottom: 1rem;
     line-height: 1.1;
+    position: relative;
+  }
+  .cta-box h2 em {
+    color: #3dba82;
+    font-style: italic;
   }
   .cta-box > p {
     color: #8f9aaa;
     font-size: 1.1rem;
-    max-width: 50ch;
+    max-width: 52ch;
     margin: 0 auto 2.5rem;
     line-height: 1.6;
+    position: relative;
   }
 
+  .install-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
   .install-block {
     display: inline-block;
     background: #091018;
     border: 1px solid #1e2d3d;
     border-radius: 8px;
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
+    padding: 0.8rem 1.75rem;
   }
   .install-block code {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95rem;
-    color: #3dba82;
+    font-size: 0.9rem;
+    color: #c8d0d8;
     background: none;
     padding: 0;
+  }
+  .install-prompt {
+    color: #3dba82;
+    margin-right: 0.5rem;
+    font-weight: 700;
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    position: relative;
   }
 
   .cta-pills {
@@ -867,5 +1815,6 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
+    position: relative;
   }
 </style>
