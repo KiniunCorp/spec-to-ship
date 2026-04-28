@@ -3,210 +3,175 @@ title: "Quick Start"
 description: "Initialize a project with s2s init, then work from your AI chat client using intent-driven stage routing and isolated execution workspaces."
 ---
 
-## Product model
+This guide gets you from zero to a running s2s project in about ten minutes. By the end, you will have initialized a project, opened your AI chat session with s2s governance active, and submitted your first work request.
 
-Spec-To-Ship (`s2s`) is a CLI SDLC orchestrator.
-You initialize a project once with `s2s init`, then work from your chat app (`claude-cli` or `codex-cli`). S2S classifies your intent, plans the minimum stage route, and keeps execution governed through operational state, worktree isolation, and runtime contracts.
-
-## First run
+## Step 1: Install s2s
 
 ```bash
-cd /path/to/app
+brew install kiniuncorp/tap/s2s
+```
+
+Verify the install:
+
+```bash
+s2s --version
+```
+
+If you do not use Homebrew, see [Manual Setup](/en/manual-setup/).
+
+## Step 2: Make sure your AI client is ready
+
+s2s works with Claude Code and Codex CLI. You need at least one of them installed and authenticated before running `s2s init`.
+
+```bash
+# Verify Claude Code is available
+claude --version
+
+# Or verify Codex
+codex --version
+```
+
+If neither is installed, install and authenticate one now. s2s will ask you which client to use during initialization.
+
+## Step 3: Initialize your project
+
+Navigate to your application's root directory — the same place your `package.json`, `go.mod`, or equivalent lives.
+
+```bash
+cd /path/to/your-app
 s2s init
 ```
 
-## Daily workflow
+The guided setup asks you a few questions:
 
-1. Start/resume chat in a configured project:
-   - `s2s`
-2. Or launch explicit chat app + app path:
-   - `s2s claude-cli` (current path)
-   - `s2s codex-cli /path/to/app`
-3. Check installed CLI version when needed:
-   - `s2s help`
-   - `s2s version`
-   - `s2s --version`
-   - `s2s -v`
-4. Submit freeform intent to the orchestrator:
-   - `s2s request "build a release dashboard with approval gates"`
-   - `s2s request "fix the timeout issue in the auth flow"`
-   - The orchestrator classifies intent, plans the minimum route, and creates or reuses a Change and Spec.
-5. Inspect workflow and entity state when needed:
-   - `s2s status`
-   - `s2s show change`
-   - `s2s show slices`
-   - `s2s show runs`
-   - `s2s config`
-   - `s2s doctor`
-6. Resolve approval gates:
-   - `s2s approve`
-   - `s2s reject`
-7. Create/restore safety snapshots when needed:
-   - `s2s backup`
-   - `s2s restore --latest`
-   - `s2s restore --snapshot=<snapshot-id>`
-8. Run stages using the two-phase pattern (chat-native mode):
+- Which AI client to use (Claude Code or Codex)
+- Whether to use CLI mode or desktop app mode
+- Your preferred execution settings
 
-   **Phase 1 — get the task:**
-   - `s2s stage pm`
-   - `s2s stage research`
-   - `s2s stage design`
-   - `s2s stage engineering`
+When it finishes, s2s has created a `.s2s/` workspace in your project directory. This is where all project state, artifacts, and governance files live. It also writes three files to your project root: `AGENTS.md`, `CLAUDE.md`, and `CODEX.md`. These are governance shims — your AI client reads them automatically at the start of every session.
 
-   This outputs a structured task package: objective, context, artifact specification, and exact file paths to write. S2S updates `.s2s/live.md` with `status: context_delivered` and the next action.
+Your existing code is untouched.
 
-   **Phase 2 — generate and submit:**
-   - Generate the artifact(s) described in the task package.
-   - Write each artifact to the path specified.
-   - Run `s2s stage <stage> --submit` to record completion and advance the workflow.
-
-   After `--submit`, follow the next-action instruction in the output:
-   - Quality passes, no gate: proceed to the next stage.
-   - Quality fails: fix the listed issues and re-submit.
-   - Review gate created: wait for `s2s approve <gateId>` or `s2s reject <gateId>`.
-
-   Other stage options:
-   - `s2s stage <stage> --refine "add dark mode to the existing feature"` — refine with a specific intent
-   - `s2s stage <stage> --refine` — refine the active change (generic fallback)
-   - `s2s stage engineering_exec` — runs the existing agent pipeline in an isolated worktree (standalone mode or explicit invocation)
-
-## Session observability
-
-At chat launch, `s2s` prints a Session Banner with:
-- S2S status
-- project alias and path
-- selected client
-
-Runtime toggles live in `.s2s/config/runtime.json` under `chatObservability`:
-- `sessionBannerEnabled`
-- `wrapperPrefixEnabled`
-- `wrapperPrefixTemplate`
-
-Use `s2s config edit` to update these values interactively.
-Wrapper prefix is available only for CLI-launched sessions (`codex-cli` / `claude-cli`), not desktop app sessions.
-
-Guardrail conflict policy also lives in `.s2s/config/runtime.json`:
-- `guardrailPolicy=strict`: discrepancy blocks `s2s stage` and fails `s2s doctor`.
-- `guardrailPolicy=warn`: discrepancy is reported as warning.
-- `guardrailPolicy=prompt`: init/config asks you to choose strict, warn, or abort.
-
-## Desktop workflow
-
-1. In guided init (`s2s init`), select launch client by number:
-   - `codex-cli`
-   - `claude-cli`
-   - `codex-desktop`
-   - `claude-desktop`
-2. If desktop client is selected, open the same app root in desktop workspace and start chat there.
-3. If you later run `s2s` in terminal while desktop mode is active:
-   - s2s shows desktop guidance
-   - s2s offers switching to equivalent CLI app
-   - if you keep desktop mode, no CLI launch happens
-4. Change preference anytime with:
-   - `s2s config edit`
-
-## Project resolution rules
-
-Project commands accept optional final `[project]`:
-
-- `s2s config my-project`
-- `s2s config edit my-project`
-- `s2s stage engineering my-project`
-- `s2s status my-project`
-
-Resolution behavior:
-
-1. If `.s2s` exists in current path or ancestors, local context is used.
-2. If local context is not available, `[project]` is required.
-3. If `[project]` is provided, explicit project takes precedence.
-
-List projects:
+## Step 4: Open your AI chat session
 
 ```bash
-s2s list
+s2s
 ```
 
-## Session orientation with live.md and protocol.md
+This launches your configured AI client against the current project. At startup, s2s prints a session banner showing the project, the active client, and the current state.
 
-`.s2s/live.md` is written by s2s after every significant command. It always contains:
-- The active project and feature
-- Current stage and status
-- The next action the AI should take
-
-At the start of a session, read `.s2s/live.md` to orient without re-running any commands. If s2s output has scrolled off-screen, reading `live.md` is cheaper than re-running `s2s status`.
-
-`.s2s/protocol.md` is generated by `s2s init` and `s2s update`. It contains the full command reference for the current CLI version — purpose, arguments, flags, and examples for every active command. If you are unsure of a command's syntax, read `protocol.md` before guessing.
-
-## Project structure managed by s2s
-
-```text
-<app-root>/.s2s/
-  project.json
-  project.local.json
-  config/
-    runtime.json
-    backup.policy.json
-    governance.exceptions.json
-  guardrails/
-  artifacts/
-    <projectId>/
-      changes/
-      specs/
-      slices/
-      runs/
-      gates/
-      ledger.json
-  logs/
-    orchestrator.log
-  backups/
+```
+[s2s] session started · project: your-app · client: claude-cli · status: none
 ```
 
-Root compatibility shim files:
+`status: none` means there is no active work. You are ready to submit your first request.
 
-- `AGENTS.md`
-- `CODEX.md`
-- `CLAUDE.md`
+If you prefer to open the desktop app instead of the CLI, s2s will show you guidance for that too. Either way, the governance files your AI client reads are identical — the session behavior is the same.
 
-Global state location:
+## Step 5: Submit your first work request
 
-```text
-~/.s2s/
-  projects.json
-  runtime/worktree-provider/
-  worktrees/<project>/
-  backups/projects/<project-hash>/<snapshot-id>/
+Inside your AI chat session, tell the AI to submit a request. You can phrase it naturally:
+
+> "Submit a request to add rate limiting to the API."
+
+Your AI client will run:
+
+```bash
+s2s request "add rate limiting to the API"
 ```
+
+The orchestrator classifies the intent, selects the minimum stage route, and tells you exactly what happens next:
+
+```
+[s2s] request received
+intent: new_feature · confidence: 0.91
+route: pm → design → engineering → engineering_exec
+approval required: yes (before engineering_exec)
+
+next: s2s stage pm
+```
+
+For a new feature, s2s plans a full route: product requirements, design, engineering spec, then execution. For a bug fix, it would route straight to engineering. The orchestrator decides based on what you asked.
+
+## Step 6: Work through the stages
+
+Each stage follows the same two-step pattern.
+
+**First, get the task package:**
+
+```bash
+s2s stage pm
+```
+
+s2s outputs a structured task package — objective, prior context, artifact requirements, exact file path to write. No LLM call is made. This runs in the binary at zero token cost.
+
+Your AI reads the task package and generates the artifact (in this case, a PRD at the specified path). Then it submits:
+
+```bash
+s2s stage pm --submit
+```
+
+s2s reads the artifact, checks quality, advances the project state, and tells you what comes next:
+
+```
+[s2s] pm submitted · quality 91% · next: s2s stage design
+```
+
+Repeat for each stage in the route. When a stage requires human review, s2s creates an approval gate and pauses:
+
+```
+[s2s] pm submitted · quality 88% · gate created (gate_abc123)
+waiting for: s2s approve gate_abc123
+```
+
+You review the artifact, then run:
+
+```bash
+s2s approve gate_abc123
+```
+
+Work resumes.
+
+## Step 7: Check state any time
+
+If you ever lose track of where things are — session restarted, long break, scrolled context — read the live state file:
+
+```bash
+cat .s2s/live.md
+```
+
+This file is always current. It shows the active feature, current stage, status, and exactly what to do next. You do not need to re-run commands or reconstruct context from the chat history.
+
+You can also run:
+
+```bash
+s2s status        # human-readable project state
+s2s show change   # the active change and its route
+s2s show slices   # execution slices and their status
+s2s doctor        # validate configuration and guardrail consistency
+```
+
+## What happens during engineering execution
+
+When engineering execution runs (`s2s stage engineering_exec`), s2s creates an isolated git worktree — a separate working directory on a dedicated branch. The AI agent implements the code there. Your main working directory is untouched until you review and merge.
+
+Branches follow the pattern `s2s-<provider>/<change-id>`:
+
+```
+s2s-claude/add-rate-limiting
+s2s-codex/add-rate-limiting
+```
+
+After execution, s2s records the result, updates the live state, and tells you whether to open a PR or whether there is more work to do.
 
 ## Troubleshooting
 
-1. `No local .s2s context found`
-   - This happens for project commands outside local context.
-   - Run command inside a configured project or pass `[project]`.
+**`No local .s2s context found`** — Run the command from inside your project directory, or pass the project name explicitly: `s2s status my-project`.
 
-2. `Command not found in PATH: codex` / `claude`
-   - Install and authenticate that chat CLI first.
+**`Command not found in PATH: claude`** — Install and authenticate Claude Code before running s2s.
 
-3. Version compatibility block
-   - Upgrade `s2s` and retry.
+**`stage blocked by strict guardrail policy`** — Run `s2s doctor` to see what conflicts exist. Resolve them or switch to `warn` mode temporarily with `s2s config edit`.
 
-4. Engineering execution issues
-   - Validate app dependencies and verify commands in target repo.
+**Orchestrator routing looks wrong** — Re-submit with a clearer prompt: `s2s request "..."`. The orchestrator uses keyword signals; more specific language helps classification.
 
-5. Desktop/terminal mismatch warning
-   - This appears when `lastClient` is desktop and `s2s` runs in terminal.
-   - Open the desktop app on the same repo root, or run `s2s config edit` and switch to `codex-cli`/`claude-cli`.
-
-6. Wrapper prefix enabled but header cadence is inconsistent
-   - Wrapper header is designed for first response and agent-change moments.
-   - In fully interactive terminal mode, s2s may fallback to plain passthrough for compatibility.
-   - Keep Session Banner enabled for deterministic launch-level visibility.
-
-7. `stage '<x>' blocked by strict guardrail policy`
-   - Canonical guardrails or root shim overrides contain instructions that conflict with `.s2s/guardrails/*`.
-   - Run `s2s doctor` to inspect discrepancies and resolve them.
-   - If needed temporarily, switch to `warn` using `s2s config edit`.
-
-8. Orchestrator errors or unexpected routing
-   - Non-fatal orchestrator errors are logged to `.s2s/logs/orchestrator.log`.
-   - Run with `--verbose` to surface orchestrator warnings to stderr.
-   - Use `s2s request "<prompt>"` to resubmit intent and let the orchestrator re-plan the route.
+For more, see the full troubleshooting reference in [Operations & Security](/en/technical-operations-security/).

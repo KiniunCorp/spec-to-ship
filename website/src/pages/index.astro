@@ -743,8 +743,8 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   .dot.green  { background: #27c93f; }
   .terminal-label { margin-left: auto; color: #4a5568; font-size: 0.72rem; }
 
-  .terminal-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0; overflow-x: auto; }
-  .t-line { line-height: 1.35; color: #c8d0d8; margin: 0; white-space: pre; }
+  .terminal-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0; }
+  .t-line { line-height: 1.35; color: #c8d0d8; margin: 0; white-space: pre-wrap; word-break: break-word; }
   .t-dim    { color: #4a5568; }
   .t-accent { color: #3dba82; }
   .t-success { color: #3dba82; font-weight: 600; }
@@ -1931,11 +1931,11 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
     /* Chat panels — smaller font, allow body scroll */
     .chat-panel { font-size: 0.68rem; }
     .chat-body { padding: 0.75rem 1rem; }
-    .cli-line { white-space: pre-wrap; word-break: break-all; }
+    .cli-line { white-space: pre-wrap; word-break: break-word; }
     /* Gate terminal */
     .gate-terminal { font-size: 0.68rem; }
     .gate-term-body { padding: 0.9rem 1rem; }
-    .g-line { white-space: pre-wrap; word-break: break-all; }
+    .g-line { white-space: pre-wrap; word-break: break-word; }
   }
 
   /* Compat logos — 3 columns on mobile */

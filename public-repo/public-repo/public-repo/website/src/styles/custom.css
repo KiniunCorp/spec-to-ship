@@ -1,0 +1,45 @@
+/* Spec-to-Ship brand tokens */
+:root {
+	--sl-color-accent-low: #0d2a1e;
+	--sl-color-accent: #3dba82;
+	--sl-color-accent-high: #6dd9a8;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #c8d0d8;
+	--sl-color-gray-2: #8f9aaa;
+	--sl-color-gray-3: #4a5568;
+	--sl-color-gray-4: #1e2d3d;
+	--sl-color-gray-5: #162030;
+	--sl-color-gray-6: #0e1520;
+	--sl-color-black: #091018;
+	--sl-color-bg: #091018;
+	--sl-color-bg-nav: #0d1a28;
+	--sl-color-bg-sidebar: #0d1a28;
+	--sl-font-system: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Force dark mode always */
+:root[data-theme='light'] {
+	--sl-color-bg: #091018;
+	--sl-color-bg-nav: #0d1a28;
+	--sl-color-bg-sidebar: #0d1a28;
+	--sl-color-text: #c8d0d8;
+	--sl-color-text-accent: #3dba82;
+}
+
+/* Sidebar active item */
+[aria-current='page'],
+[aria-current='page']:hover {
+	color: var(--sl-color-accent) !important;
+	background-color: var(--sl-color-accent-low) !important;
+}
+
+/* Accent links */
+a {
+	color: var(--sl-color-accent-high);
+}
+
+/* Nav logo sizing */
+.site-title img {
+	height: 28px;
+	width: auto;
+}

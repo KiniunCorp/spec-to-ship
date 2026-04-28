@@ -1,0 +1,82 @@
+[
+  {
+    "id": "codex_strict",
+    "provider": "codex",
+    "description": "Codex strict implementation mode with full validation intent.",
+    "command": "codex",
+    "args": [
+      "exec",
+      "${AGP_PROMPT_STRICT}"
+    ],
+    "timeoutMs": 1800000,
+    "allowedCommands": ["codex"]
+  },
+  {
+    "id": "codex_fast",
+    "provider": "codex",
+    "description": "Codex fast implementation mode for smaller task slices.",
+    "command": "codex",
+    "args": [
+      "exec",
+      "${AGP_PROMPT_FAST}"
+    ],
+    "timeoutMs": 900000,
+    "allowedCommands": ["codex"]
+  },
+  {
+    "id": "claude_strict",
+    "provider": "claude",
+    "description": "Claude strict implementation mode with full validation intent.",
+    "command": "claude",
+    "args": [
+      "--dangerously-skip-permissions",
+      "-p",
+      "${AGP_PROMPT_STRICT}"
+    ],
+    "timeoutMs": 1800000,
+    "allowedCommands": ["claude"]
+  },
+  {
+    "id": "claude_fast",
+    "provider": "claude",
+    "description": "Claude fast implementation mode for smaller task slices.",
+    "command": "claude",
+    "args": [
+      "--dangerously-skip-permissions",
+      "-p",
+      "${AGP_PROMPT_FAST}"
+    ],
+    "timeoutMs": 900000,
+    "allowedCommands": ["claude"]
+  },
+  {
+    "id": "opencode_strict",
+    "provider": "opencode",
+    "description": "OpenCode strict implementation mode with full validation intent.",
+    "command": "opencode",
+    "args": [
+      "run",
+      "--cwd",
+      "${AGP_WORKTREE_PATH}",
+      "--prompt",
+      "${AGP_PROMPT_STRICT}"
+    ],
+    "timeoutMs": 1800000,
+    "allowedCommands": ["opencode"]
+  },
+  {
+    "id": "opencode_fast",
+    "provider": "opencode",
+    "description": "OpenCode fast implementation mode for smaller task slices.",
+    "command": "opencode",
+    "args": [
+      "run",
+      "--cwd",
+      "${AGP_WORKTREE_PATH}",
+      "--prompt",
+      "${AGP_PROMPT_FAST}"
+    ],
+    "timeoutMs": 900000,
+    "allowedCommands": ["opencode"]
+  }
+]

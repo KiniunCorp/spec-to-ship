@@ -3,110 +3,58 @@ title: "Introduction"
 description: "s2s is a CLI tool that adds structure, governance, and state management to AI-assisted software development alongside Claude Code and Codex."
 ---
 
-## Overview
+## The problem with ungoverned AI development
 
-Spec-To-Ship (`s2s`) is a command-line tool that adds structure, governance, and state management to AI-assisted software development. It works alongside Claude Code and Codex, guiding those tools through a disciplined workflow — from understanding what was requested, to planning the right amount of process, to executing code changes in an isolated workspace. The developer stays in control at every step. S2S handles the scaffolding and keeps a record of everything.
+AI coding tools are fast. That is genuinely useful. But fast and ungoverned is a combination that creates a specific kind of debt.
 
----
+You ask your AI assistant to "add the login feature." Two hours later there is a 400-line PR with a database migration, three new API endpoints, and no tests. Nobody planned this. Nobody approved it. The reasoning that led to it is gone — it lived in a chat window that has since been closed or compacted.
 
-## Who it's for
+Now multiply that across a team. Across a quarter. Across a codebase that is moving faster than anyone can review.
 
-**Technical founders and solo developers** who use AI coding tools daily and want delivery discipline without a full engineering team's overhead.
+The bottleneck is no longer writing code. It is governing what the AI produces.
 
-**Small engineering teams (roughly 3–30 people)** who have adopted Claude Code or Codex and are starting to feel the cost of inconsistent, ungoverned AI output — PRs no one fully understands, features that grew beyond their scope, no audit trail for what was actually built.
+## What s2s is
 
-**Engineering leads** who need to introduce AI tooling without losing the process controls their team already relies on — approvals, documented decisions, reviewable artifacts.
+Spec-To-Ship (`s2s`) is a CLI tool that sits between your AI client and your codebase. It handles orchestration — intent classification, stage routing, state management, quality checks, approval gates — entirely inside the binary, spending zero AI tokens on governance overhead.
 
-The common thread: people who find AI coding tools genuinely useful but want the output to be something they can stand behind.
+When you send a request, s2s figures out what kind of work it is and plans the minimum set of stages that request actually needs. A bug fix routes straight to engineering. A new feature goes through product, design, and engineering — in that order, with your review at each handoff. The orchestrator decides. You approve. The AI generates. Nothing ships without a deliberate decision.
 
----
+Every request produces a persistent record: what was asked, how it was classified, what stages ran, what artifacts were produced, who approved what. Close the chat window. Come back a week later. The state is exactly where you left it.
 
-## What problem it solves
+## Who it is for
 
-When you work with an AI coding assistant without any surrounding structure, a few things tend to go wrong:
+If you use Claude Code, Codex, or any AI coding client and you have started to notice that the output is fast but hard to reason about, hard to review, or hard to explain to anyone else — s2s is built for you.
 
-**The AI doesn't know what kind of work you actually need.** Ask it to "fix the login bug" and it may produce a full refactor. Ask it to "add dark mode" and it may skip the design discussion entirely and go straight to implementation. There is no signal about scope.
+More specifically:
 
-**There is no record of what happened or why.** The conversation window closes and the reasoning is gone. If something breaks three weeks later, you have no artifact trail to trace back through.
+**Solo developers and technical founders** who ship with AI every day and want the output to be something they can stand behind. The audit trail matters. The scope boundaries matter. The paper trail that a future team member or investor can read matters.
 
-**Approval is ad hoc.** Anyone on the team can push AI-driven changes at any time, with no consistent gate between "the AI suggested this" and "this is ready to ship."
+**Small engineering teams** (roughly 3–30 people) who have adopted AI tooling and are starting to feel the consequences of inconsistent, ungoverned output: PRs no one fully understands, features that grew beyond their scope, no record of what was actually decided.
 
-**Parallel work is fragile.** Multiple AI sessions touching the same repository at the same time is a recipe for conflicts and overwritten work.
+**Engineering leads** who need to introduce AI tooling without surrendering the process controls their team already relies on — approvals, documented decisions, reviewable artifacts before code runs.
 
-S2S addresses all four. It classifies what you're asking for, routes it through only the stages that request actually needs, keeps a structured record of every decision and artifact, enforces human approval at meaningful checkpoints, and runs code changes in isolated git worktrees so parallel work stays clean.
+The common thread is people who find AI coding tools genuinely useful and want the output to be something they can trust in production.
 
----
+## How it works at a high level
 
-## How the workflow works
+You initialize s2s once in your project with `s2s init`. It sets up a `.s2s/` workspace, installs governance files that your AI client reads automatically at the start of every session, and registers the project. This takes a few minutes and does not change any existing code.
 
-**1. Initialize the project once.**
-Run `s2s init` in your project directory. It sets up a `.s2s/` workspace with your configuration, installs governance files that your AI client reads automatically on every session, and registers the project. This takes a few minutes and does not change any existing code.
+From there, you work inside your AI chat the same way you always have. The difference is that s2s is handling everything underneath: classifying what you asked for, routing it through the right stages, packaging exactly the context the AI needs for each stage, checking the artifact quality when it is submitted, managing the approval gates, running code changes in isolated git worktrees so your main branch stays clean.
 
-**2. Submit a work request.**
-From your AI chat session — or directly from the terminal — submit a request: `s2s request "add rate limiting to the API"`. The orchestrator reads the request, classifies the intent (new feature? bug fix? investigation?), and decides the minimum set of stages that work actually needs. It responds with the planned route and whether approval is required before execution.
+The AI generates the artifacts. s2s runs the process. You make the decisions.
 
-**3. Work through stages using the two-phase pattern.**
-For each artifact-producing stage — PM, Research, Design, Engineering — the workflow is:
+## What makes this different from just using an AI client directly
 
-First, run `s2s stage <stage>`. S2S outputs a structured task package: exactly what to build, the context from prior stages, and the file path to write the artifact to. Nothing is sent to an LLM. The AI reads the task, generates the artifact in the chat session, and writes it to the specified path.
+The key difference is that s2s makes orchestration decisions locally, in the binary, at zero token cost. Your AI chat budget goes entirely to generating PRDs, technical specs, and code — not to figuring out what stage to run next, reconstructing what was decided in a prior session, or reasoning about whether this request needs a design review.
 
-Then run `s2s stage <stage> --submit`. S2S reads the artifact, runs quality checks, advances the project state, and tells the AI what to do next — proceed to the next stage, fix quality issues, or wait for a review gate.
+The governance is also real. s2s writes governance files into `.s2s/guardrails/` and root compatibility shims (`AGENTS.md`, `CLAUDE.md`, `CODEX.md`). Your AI client reads these files automatically at the start of every session. The AI's behavior is shaped by versioned, conflict-detected governance — not a prompt you paste into a chat and hope persists.
 
-S2S handles all orchestration logic — routing, state, quality, gate creation — in the binary. Your AI tokens go to generating the artifact, not to managing the workflow.
+And the state persists. The conversation window is not the source of truth. `.s2s/` is.
 
-**4. Review and approve at gates.**
-At meaningful points — after planning is done, before code executes — S2S pauses and asks for human approval via `s2s approve` or `s2s reject`. You can inspect everything: `s2s show change`, `s2s show spec`, `s2s show slices`. Nothing advances without a deliberate decision.
+## Where to go next
 
-**5. Execute in an isolated workspace.**
-When engineering execution runs, it operates on one scoped unit of work at a time (a Slice, derived from the Technical Spec and Backlog) inside an isolated git worktree — a separate working directory on a dedicated branch. Your main working directory is untouched until you review and merge.
+If you are ready to set up your first project, go to [Quick Start](/en/quickstart/).
 
-**6. Continue safely.**
-After execution, S2S records what happened: which branch, which PR, whether verification passed, what artifacts were produced. If you need to refine the work, submit another request. The orchestrator accumulates the new route into the existing work rather than overwriting prior decisions.
+If you want to understand the workflow before you install anything, read [Chat-Native Workflow](/en/chat-native-workflow/).
 
----
-
-## Why this workflow is valuable
-
-**Less chaos.** Every request goes through classification before anything happens. The AI doesn't decide on its own how much work to do — the orchestrator decides, based on what you asked for.
-
-**Continuity across sessions.** Work state is persisted in `.s2s/` as structured files — changes, specs, slices, runs, approval gates. Close your laptop, switch machines, come back a week later. The project state is exactly where you left it.
-
-**Safer parallel execution.** Code changes run in isolated worktrees, not in your main working directory. Two streams of work can run without stepping on each other, and each stream has its own branch and PR.
-
-**Decisions are documented.** Every orchestration decision — what the request was, how it was classified, what route was planned, who approved what — is stored and queryable. The artifact trail survives the chat window.
-
-**Right amount of process.** A one-line bug fix does not get routed through product and design. A new feature does. The tool applies process proportionally, not uniformly.
-
----
-
-## What makes s2s different
-
-**Intent-aware routing.** S2S does not run a fixed pipeline for every request. It classifies what you asked for across nine intent types — new feature, bug fix, investigation, refinement, hotfix, and others — and selects only the stages that request needs. This is the core behavior, and it is fully implemented.
-
-**Adaptive across refinements.** When you refine existing work, S2S merges the new route into the prior plan rather than replacing it. If earlier decisions required an approval gate, that gate is preserved even after a follow-up request. You cannot accidentally drop a compliance checkpoint by submitting a clarifying message.
-
-**Slice-first execution.** Engineering execution operates one scoped unit at a time — a Slice derived from the Technical Spec and Backlog. This bounds the blast radius of any single execution and makes recovery straightforward if something goes wrong.
-
-**Isolated execution workspaces.** Code changes happen in dedicated git worktrees, not in your live working directory. Your main branch is clean until you explicitly review and merge.
-
-**Governance that the AI actually reads.** S2S writes governance files into `.s2s/guardrails/` and root compatibility shims (`AGENTS.md`, `CLAUDE.md`, `CODEX.md`). Claude Code and Codex read these files automatically at the start of every session. The AI's behavior is shaped by real, versioned, conflict-detected governance — not a prompt you paste into a chat window and hope persists.
-
-**Works with the tools you already use.** S2S does not replace Claude Code or Codex. It runs alongside them. Your chat client stays the same; S2S adds the orchestration and execution layer underneath.
-
----
-
-## Current limitations
-
-S2S currently supports one active work stream per project. Teams running several independent features in parallel through the same project will find this constraining — multi-stream support is a natural next step but is not yet in the product.
-
-The intent classifier uses weighted keyword signals. It handles common cases — bug fixes, new features, investigations — reliably, but ambiguous or compound requests may be routed in unexpected ways. A feedback mechanism to correct misclassifications does not yet exist.
-
-Engineering execution is built around repositories that have a working verification command. Projects without a test or build command will produce execution runs with no verification signal.
-
-The `iterate` stage — for post-delivery refinement loops — is defined in the data model but is not yet reachable from the CLI surface.
-
----
-
-## Positioning
-
-S2S is the governance and orchestration layer for teams that have adopted AI coding tools and want to ship with confidence. It brings intent classification, adaptive stage routing, scoped execution, and persistent audit trails to a workflow that is otherwise fast but ungoverned. It does not replace your AI client or your engineering process — it makes both more disciplined. Open source, CLI-native, and built to work with Claude Code and Codex today.
+If you want the technical details on how the pieces fit together, see [Technical Architecture](/en/technical-architecture/).

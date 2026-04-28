@@ -1,0 +1,156 @@
+---
+import Search from 'virtual:starlight/components/Search';
+
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const isDocs = !isHome;
+---
+
+<div class="header">
+  <a href="/" class="site-logo">SPEC-TO-SHIP</a>
+
+  <nav class="nav-links">
+    <a href="/" class:list={['nav-link', { active: isHome }]}>Home</a>
+    <a href="/en/introduction/" class:list={['nav-link', { active: isDocs }]}>Docs</a>
+  </nav>
+
+  <div class="header-right">
+    <div class="search-wrap">
+      <Search />
+    </div>
+    <a
+      href="https://github.com/KiniunCorp/spec-to-ship"
+      class="github-btn"
+      target="_blank"
+      rel="noopener"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
+      STAR ON GITHUB
+    </a>
+  </div>
+</div>
+
+<style>
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 2rem;
+    padding: 0 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .site-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: #3dba82;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .site-logo:hover { color: #6dd9a8; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #8f9aaa;
+    text-decoration: none;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav-link:hover { color: #c8d0d8; }
+  .nav-link.active {
+    color: #3dba82;
+    border-bottom-color: #3dba82;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Restyle the Starlight search button to match the mockup */
+  .search-wrap :global(site-search) {
+    display: flex;
+  }
+  .search-wrap :global([data-open-modal]) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #0d1a28;
+    border: 1px solid #1e2d3d;
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    color: #4a5568;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.15s;
+    min-width: 180px;
+  }
+  .search-wrap :global([data-open-modal]:hover) {
+    border-color: #3dba82;
+    color: #8f9aaa;
+  }
+  .search-wrap :global([data-open-modal] svg) {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  /* The ⌘K shortcut badge Starlight renders */
+  .search-wrap :global(kbd) {
+    background: #162030;
+    border: 1px solid #1e2d3d;
+    border-radius: 3px;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.65rem;
+    color: #4a5568;
+    font-family: monospace;
+    margin-left: auto;
+  }
+
+  .github-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #3dba82;
+    color: #091018;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .github-btn:hover { background: #6dd9a8; color: #091018; }
+
+  @media (max-width: 480px) {
+    .search-wrap { display: none; }
+    .github-btn span { display: none; }
+  }
+</style>
